@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases del ciclo · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.tabs a,.tabs .dd>button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;line-height:1.2;}
+.tabs a:hover,.tabs .dd>button:hover{background:var(--soft);}
+.tabs a.on,.tabs .dd.on>button{border-color:var(--navy);background:var(--navy);color:#fff;}
+.dd{position:relative;}
+.dd>button::after{content:" ▾";font-size:11px;}
+.dd .menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 10px 28px rgba(0,47,108,.14);z-index:30;}
+.dd.open .menu{display:block;}
+@media(hover:hover){.dd:hover .menu{display:block;}}
+.dd .menu a{display:block;padding:8px 12px;border-radius:8px;border:none;font-size:14.5px;}
+.dd .menu a.on{background:var(--navy);color:#fff;}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a,.tabs .dd>button{padding:7px 10px;font-size:14px}}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+
+.ruta{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:12px;margin:14px 0;align-items:baseline;max-width:820px;}
+.ruta .d{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--magenta);white-space:nowrap;font-size:14px;}
+.ruta .t{font-size:15px;}
+details{border:2px solid var(--line);border-radius:12px;padding:0;margin:8px 0;background:#fff;}
+details summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:var(--navy);padding:12px 16px;list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"+";display:inline-block;width:18px;color:var(--fucsia);font-weight:700;}
+details[open] summary::before{content:"–";}
+details p{padding:0 16px 12px 34px;margin:0;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <div class="dd on"><button type="button">El programa</button><div class="menu"><a class="on" href="bases.html">Bases del ciclo</a><a href="comite.html">Comité y criterios</a><a href="faq.html">Preguntas frecuentes</a><a href="presentacion.html">Presentación a Dirección</a></div></div>
+    <div class="dd"><button type="button">Participar</button><div class="menu"><a href="ficha.html">Ficha de postulación</a><a href="kit.html">Kit del participante</a><a href="reglas-ia.html">Reglas de IA y datos</a><a href="mentoria.html">Canal de mentoría</a></div></div>
+    <div class="dd"><button type="button">Seguimiento</button><div class="menu"><a href="calendario.html">Calendario del ciclo</a><a href="panel.html">Panel de seguimiento</a><a href="finalistas.html">Finalistas y demo</a></div></div>
+    <a href="guia-lideres.html">Guía para líderes</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+<aside>
+  <div class="k">Contenido</div>
+  <a href="#objeto">1 · Objeto</a>
+  <a href="#quien">2 · Quién puede participar</a>
+  <a href="#que">3 · Qué se puede proponer</a>
+  <a href="#como">4 · Cómo se postula</a>
+  <a href="#evaluacion">5 · Evaluación y selección</a>
+  <a href="#mvp">6 · Construcción del MVP</a>
+  <a href="#demo">7 · Demo y lugares</a>
+  <a href="#premios">8 · Premios y reconocimiento</a>
+  <a href="#implementacion">9 · Implementación</a>
+  <a href="#datos">10 · Datos, IA y propiedad</a>
+  <a href="#retiros">11 · Retiros y descalificación</a>
+  <a href="#cambios">12 · Cambios a estas bases</a>
+</aside>
+
+<main>
+  <div class="eyebrow">// bases del primer ciclo · borrador para aprobación del comité</div>
+  <h1>Bases del ciclo</h1>
+  <p class="lead">Las reglas del primer ciclo del Programa de Innovación de CECOMSA, de noviembre de 2026 a marzo de 2027. Son las mismas para todos y solo el comité puede cambiarlas.</p>
+  <div class="aviso">Borrador. Lo marcado entre <span class="pend">[corchetes]</span> está pendiente de decisión. Estas bases se publican en su versión final antes del 20 de noviembre de 2026.</div>
+
+  <h2 id="objeto">1 · Objeto</h2>
+  <p>El primer ciclo del Programa de Innovación convierte problemas reales de la operación en MVP medidos, construidos por ti, que conoces el problema mejor que nadie, con el respaldo del programa: mentoría, licencia de IA, un comité que decide con criterios publicados y una salida real para las propuestas que lleguen más lejos.</p>
+
+  <h2 id="quien">2 · Quién puede participar</h2>
+  <ul>
+    <li>Cualquier colaborador con relación laboral vigente con CECOMSA, de cualquier área y nivel.</li>
+    <li>De forma individual o en equipo de hasta cuatro personas. Los equipos pueden mezclar áreas.</li>
+    <li>Pueden participar quienes reportan a miembros del comité evaluador. No pueden participar los miembros del comité.</li>
+    <li>TI no concursa en este ciclo: orienta, revisa datos y seguridad, y puede formar parte del equipo mentor a discreción del programa.</li>
+    <li>Quien no tiene computadora o cuenta de correo participa a través de su supervisor, que envía la ficha por él.</li>
+  </ul>
+
+  <h2 id="que">3 · Qué se puede proponer</h2>
+  <p>Dos tipos de propuesta:</p>
+  <ul>
+    <li><b>Una mejora:</b> un problema real, frecuente y medible, dentro de uno de los cuatro pilares: experiencia del cliente, mejora de procesos, eficiencia o retorno.</li>
+    <li><b>Una novedad:</b> algo que hoy no existe en CECOMSA y que un cliente o un compañero valoraría, siempre que se pueda probar y medir en ocho semanas.</li>
+  </ul>
+  <div class="senal"><b>Qué entendemos por innovar.</b> No es inventar tecnología. Es cambiar cómo se hace algo para que un cliente, un compañero o la empresa obtengan un resultado mejor, y poder demostrarlo con un número. Un flujo nuevo, una regla distinta, un asistente con IA o un tablero cuentan igual que un desarrollo.</div>
+
+  <h2 id="como">4 · Cómo se postula</h2>
+  <ul>
+    <li>En el <a href="ficha.html">formulario en línea</a>, con la cuenta de CECOMSA, del 20 de noviembre al 10 de diciembre de 2026.</li>
+    <li>Una persona puede enviar más de una propuesta, pero solo puede ser finalista con una.</li>
+    <li>El supervisor inmediato confirma por correo un mínimo de dos horas semanales durante las ocho semanas del MVP. El participante puede negociar más horas con su supervisor, siempre que no descuide su operación. Sin la confirmación del supervisor, la propuesta no entra a evaluación.</li>
+    <li>Al postular, el participante acepta las <a href="reglas-ia.html">reglas de IA y datos</a> del programa.</li>
+  </ul>
+
+  <h2 id="evaluacion">5 · Evaluación y selección</h2>
+  <ul>
+    <li>El comité evalúa en diciembre con los criterios publicados en <a href="comite.html">Comité y criterios</a>.</li>
+    <li>Selecciona al menos cinco finalistas en la primera semana de enero de 2027; pueden ser más si hay muchas propuestas interesantes <span class="pend">[máximo por definir; propuesta: ocho]</span>.</li>
+    <li>Toda propuesta, seleccionada o no, recibe retroalimentación escrita.</li>
+    <li>Las propuestas no seleccionadas entran al banco de ideas con el nombre de su autor y pueden volver a participar, reforzadas con esa retroalimentación, en el siguiente ciclo.</li>
+  </ul>
+
+  <h2 id="mvp">6 · Construcción del MVP</h2>
+  <ul>
+    <li>Del 15 de enero al 15 de marzo de 2027.</li>
+    <li>Al menos dos sesiones de mentoría de dos horas antes de construir; el comité puede otorgar sesiones extra a discreción. Más detalle en <a href="mentoria.html">Canal de mentoría</a>.</li>
+    <li>Licencia de IA por participante o equipo, canal de consulta abierto y revisiones con el programa en las semanas 3 y 6.</li>
+    <li>El MVP se construye y se prueba fuera de los sistemas en producción, con datos ficticios o anonimizados.</li>
+    <li>Qué es un MVP funcional, cómo se levanta la línea base y el plan de ocho semanas están en el <a href="kit.html">Kit del participante</a>.</li>
+  </ul>
+
+  <h2 id="demo">7 · Demo y lugares</h2>
+  <ul>
+    <li>Demo ante el comité y el público <span class="pend">[fecha, tras el 15 de marzo de 2027]</span>. Cinco minutos por finalista.</li>
+    <li>Se otorgan tres lugares. Vota el comité con la rúbrica publicada <span class="pend">[80%]</span> y el público presente <span class="pend">[20%]</span>.</li>
+    <li>Lo que se evalúa es el resultado medido contra la línea base, no la presentación.</li>
+  </ul>
+
+  <h2 id="premios">8 · Premios y reconocimiento</h2>
+  <p>Los premios y reconocimientos del primer ciclo están en definición con la gerencia y se publican en esta misma página antes del 20 de noviembre de 2026. Lo que ya es seguro: los finalistas reciben reconocimiento público y el segundo y tercer lugar tienen prioridad en el siguiente ciclo.</p>
+
+  <h2 id="implementacion">9 · Implementación</h2>
+  <ul>
+    <li>El primer lugar tiene prioridad de implementación; después el segundo y el tercero, según capacidad y resultados medidos.</li>
+    <li>Se implementa en la operación a partir del segundo trimestre de 2027, con un dueño operativo y un costo recurrente definidos antes de empezar.</li>
+    <li>Si la solución toca algún sistema, la integración la hace TI con horas aprobadas.</li>
+    <li>La implementación no está garantizada si el MVP no cumple la definición de funcional del kit.</li>
+  </ul>
+
+  <h2 id="datos">10 · Datos, IA y propiedad</h2>
+  <ul>
+    <li>Aplican las <a href="reglas-ia.html">reglas de IA y datos</a> desde que se envía la ficha.</li>
+    <li>Lo construido dentro del programa pertenece a la empresa <span class="pend">[por confirmar con RRHH y Legal]</span>. La autoría se reconoce públicamente.</li>
+  </ul>
+
+  <h2 id="retiros">11 · Retiros y descalificación</h2>
+  <ul>
+    <li>Un finalista puede retirarse hasta el final de la segunda semana del MVP (28 de enero de 2027) avisando al programa por escrito; su cupo pasa a la siguiente propuesta mejor evaluada.</li>
+    <li>Después de la segunda semana no hay retiro: un MVP sin terminar se presenta igual en la demo con lo que haya medido.</li>
+    <li>Descalifica: usar datos de la categoría roja del semáforo, conectar el MVP a producción sin revisión de TI, o presentar resultados sin evidencia.</li>
+  </ul>
+
+  <h2 id="cambios">12 · Cambios a estas bases</h2>
+  <p>Solo el comité evaluador puede modificar estas bases, por escrito y antes de que el cambio afecte a una etapa en curso. Los cambios se publican en esta página con su fecha.</p>
+  <p class="nota">Versión: borrador del 14 de octubre de 2026.</p>
+</main>
+</div>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+<script>
+(function(){var dds=document.querySelectorAll('.dd');dds.forEach(function(d){d.querySelector('button').addEventListener('click',function(e){e.stopPropagation();dds.forEach(function(o){if(o!==d)o.classList.remove('open');});d.classList.toggle('open');});});document.addEventListener('click',function(){dds.forEach(function(o){o.classList.remove('open');});});})();
+</script>
+</body>
+</html>
