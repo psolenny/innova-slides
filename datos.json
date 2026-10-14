@@ -1,0 +1,57 @@
+{
+  "actualizado": "2026-10-14",
+  "etapa": "anuncio",
+  "etapas": [
+    {"id": "anuncio", "nombre": "Anuncio", "fecha": "5 nov 2026", "detalle": "A los líderes en el día 2 del taller de IA; luego a todo el personal."},
+    {"id": "convocatoria", "nombre": "Convocatoria", "fecha": "20 nov – 10 dic", "detalle": "Recepción de propuestas en el formulario en línea."},
+    {"id": "evaluacion", "nombre": "Evaluación", "fecha": "11 – 22 dic", "detalle": "Puntuación individual del comité."},
+    {"id": "seleccion", "nombre": "Selección", "fecha": "1.ª sem ene 2027", "detalle": "Anuncio de finalistas y retroalimentación a todos."},
+    {"id": "mvp", "nombre": "MVP", "fecha": "15 ene – 15 mar", "detalle": "Mentoría, construcción y revisiones en semanas 3 y 6."},
+    {"id": "demo", "nombre": "Demo", "fecha": "[tras el 15 mar]", "detalle": "Tres lugares; voto del comité y del público."},
+    {"id": "implementacion", "nombre": "Implementación", "fecha": "desde Q2 2027", "detalle": "Primer lugar con prioridad; luego segundo y tercero."}
+  ],
+  "convocatoria": {
+    "meta": null,
+    "porDia": [],
+    "porPilar": {"Experiencia del cliente": 0, "Mejora de procesos": 0, "Eficiencia": 0, "Retorno": 0},
+    "porArea": {},
+    "equipo": 0,
+    "individual": 0,
+    "confirmadas": 0,
+    "pendientes": 0,
+    "pendientesMas5dias": 0,
+    "areasSinPostular": []
+  },
+  "evaluacion": {
+    "total": 0,
+    "puntuadasPorMiembro": {"Directora Administrativa": 0, "Director de TI": 0, "Encargada de Mejora Continua": 0, "Gerente de Finanzas": 0, "Gerente de Proyectos de Innovación": 0},
+    "retroEnviada": 0,
+    "retroPendiente": 0
+  },
+  "finalistas": [],
+  "resultados": {
+    "votoPublicoPeso": null,
+    "programa": {"propuestas": 0, "areasParticipantes": 0, "finalistas": 0, "mvpEnUso": 0, "alBanco": 0}
+  },
+  "_ejemploFinalista": {
+    "id": "F1",
+    "equipo": "Nombre del equipo",
+    "areas": ["Área"],
+    "pilar": "Mejora de procesos",
+    "problema": "El problema en una frase.",
+    "indicador": "minutos por caso",
+    "lineaBase": null,
+    "meta": null,
+    "actual": null,
+    "semana": 0,
+    "revisiones": {"r3": "pendiente", "r6": "pendiente"},
+    "riesgo": "verde",
+    "mentoriaHoras": 0,
+    "sesionesExtra": 0,
+    "avance": {"s3": "", "s6": ""},
+    "resultado": {"despues": null, "lugar": null, "votoComite": null, "votoPublico": null},
+    "seguimiento": {"d30": null, "d60": null, "d90": null, "validadoPor": ""},
+    "implementacion": "",
+    "demoUrl": ""
+  }
+}
