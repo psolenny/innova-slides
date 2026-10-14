@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía para líderes · Innovación por Todos · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;}
+.tabs a{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;}
+.tabs a:hover{background:var(--soft);}
+.tabs a.on{border-color:var(--navy);background:var(--navy);color:#fff;}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a{padding:7px 10px;font-size:14px}}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Innovación por Todos</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <a href="presentacion.html">Presentación</a>
+    <a class="on" href="guia-lideres.html">Guía para líderes</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+<aside>
+  <div class="k">Contenido</div>
+  <a href="#proposito">Propósito y alcance</a>
+  <a href="#rol">El rol del líder</a>
+  <a href="#motivar">Cómo motivar y apoyar</a>
+  <a href="#equipo">Cómo formar el equipo</a>
+  <a href="#ciclo">Ciclo de trabajo</a>
+  <a href="#errores">Errores comunes</a>
+  <a href="#herramientas">Herramientas</a>
+  <a href="#pendientes">Pendientes por confirmar</a>
+</aside>
+
+<main>
+  <div class="eyebrow">// guía para líderes · borrador</div>
+  <h1>Impulsar la innovación y formar equipos innovadores</h1>
+  <p class="lead">Tu trabajo como líder no es tener las ideas: es crear las condiciones para que tu equipo detecte problemas reales, los resuelva con un MVP y lo demuestre con datos. Esta guía te dice cómo hacerlo y cómo armar el equipo que lo ejecute.</p>
+  <div class="aviso"><b>Borrador.</b> Lo marcado como <span class="pend">[por confirmar]</span> depende de decisiones del programa aún abiertas (horas de acompañamiento de TI, herramientas permitidas, criterios del comité, postulación individual o en equipo).</div>
+
+  <h2 id="proposito">Propósito y alcance</h2>
+  <p>La guía acompaña a <b>Innovación por Todos</b>, el programa de innovación de CECOMSA: cualquier colaborador propone una mejora de su área bajo uno de los cuatro pilares (experiencia del cliente, mejora de procesos, eficiencia, retorno), el comité selecciona cinco finalistas, cada finalista construye un MVP en ocho semanas con mentoría y licencia de IA, y en la demo se eligen el 1.º, 2.º y 3.º lugar. El 1.º lugar, si es un MVP funcional, pasa a producción a partir del segundo trimestre de 2027.</p>
+  <ul>
+    <li><b>Para quién:</b> gerentes, encargados y supervisores de cualquier área, técnica o no. Aunque la convocatoria es abierta a todos los colaboradores, tú autorizas el tiempo de tu gente y eres quien puede convertir una idea aislada en un equipo que la construya.</li>
+    <li><b>Qué cubre:</b> cómo motivar y apoyar a tu equipo, cómo formar el equipo de innovación y cómo llevar la idea hasta la demo.</li>
+    <li><b>Qué no cubre:</b> bases del concurso, premios y montos, ni el detalle técnico de las herramientas. Eso va en las bases del programa <span class="pend">[por confirmar]</span>.</li>
+    <li><b>Principio central:</b> el problema lo propone y lo resuelve quien lo vive. El programa orienta, asigna licencias y valida seguridad y datos; TI no desarrolla el MVP.</li>
+  </ul>
+
+  <h2 id="rol">El rol del líder</h2>
+  <p>Eres patrocinador y facilitador, no el dueño de la solución. Si la idea es solo tuya, el equipo la ejecuta como una tarea más y se apaga al primer obstáculo.</p>
+  <table>
+    <tr><th>Lo que sí te toca</th><th>Lo que no te toca</th></tr>
+    <tr><td>Elegir con el equipo un problema que importe al área</td><td>Imponer la solución antes de entender el problema</td></tr>
+    <tr><td>Firmar la ficha y proteger las dos horas semanales de cada participante, en calendario</td><td>Esperar que se haga "en el tiempo libre"</td></tr>
+    <tr><td>Quitar bloqueos: accesos, datos, aprobaciones, otras áreas</td><td>Resolver tú cada tarea técnica</td></tr>
+    <tr><td>Pedir evidencia: línea base, prueba, resultado</td><td>Aceptar "funciona" sin números</td></tr>
+    <tr><td>Dar la cara ante el comité y reconocer al equipo</td><td>Presentar el logro como propio</td></tr>
+    <tr><td>Asumir que algunos intentos fallarán</td><td>Castigar el experimento que no funcionó</td></tr>
+  </table>
+  <div class="senal">Señal de que lo estás haciendo bien: el equipo trae avances y problemas sin que tengas que preguntar.</div>
+
+  <h2 id="motivar">Cómo motivar y apoyar a tu equipo</h2>
+  <p>La motivación que sostiene un proyecto viene de resolver un problema que al equipo le molesta, con autonomía y con avances visibles. Los premios ayudan a arrancar; no sostienen el esfuerzo.</p>
+  <h3>1. Empieza por el dolor, no por la tecnología</h3>
+  <ul>
+    <li>Pregunta: ¿qué tarea repetimos cada semana que nos quita tiempo? ¿Dónde se nos van los errores? ¿Qué nos reclaman los clientes internos o externos?</li>
+    <li>Prohibido empezar con "usemos IA para…". La herramienta se elige después.</li>
+    <li>Deja que el equipo vote el problema. Si lo eligen ellos, lo defienden.</li>
+  </ul>
+  <h3>2. Da seguridad para proponer y fallar</h3>
+  <ul>
+    <li>Responde a toda idea con una pregunta, no con un juicio: "¿cómo lo probaríamos?" en vez de "eso no se puede".</li>
+    <li>Cuenta tus propios errores y lo que aprendiste. El equipo copia lo que haces, no lo que dices.</li>
+    <li>Un experimento que descarta una idea rápido es un buen resultado. Reconócelo como tal.</li>
+  </ul>
+  <h3>3. Protege tiempo real</h3>
+  <ul>
+    <li>Bloquea en calendario las dos horas semanales por participante durante las ocho semanas. Es el compromiso que firmas en la ficha de postulación.</li>
+    <li>Si la operación se come ese tiempo dos semanas seguidas, es un problema tuyo de priorización, no del equipo.</li>
+  </ul>
+  <h3>4. Da autonomía con límites claros</h3>
+  <ul>
+    <li>Define el qué (problema, meta, fecha de demo) y deja el cómo al equipo.</li>
+    <li>Deja explícitos los límites: datos que no se pueden usar, herramientas permitidas, aprobaciones necesarias <span class="pend">[por confirmar con TI]</span>.</li>
+  </ul>
+  <h3>5. Haz visible el avance</h3>
+  <ul>
+    <li>Revisión corta semanal (15–20 min): qué probamos, qué aprendimos, qué nos bloquea. El programa hace sus revisiones en las semanas 3 y 6.</li>
+    <li>Comparte los avances con tu jefe y con otras áreas. La visibilidad es reconocimiento.</li>
+  </ul>
+  <h3>6. Reconoce de forma específica</h3>
+  <ul>
+    <li>Nombra a la persona y la acción: "María midió los tiempos de 3 semanas y eso nos dio la línea base", no "buen trabajo, equipo".</li>
+    <li>Reconoce el esfuerzo y el aprendizaje, no solo al ganador del comité.</li>
+  </ul>
+  <h3>7. Atiende las resistencias</h3>
+  <table>
+    <tr><th>Lo que escuchas</th><th>Lo que suele haber detrás</th><th>Qué hacer</th></tr>
+    <tr><td>"No tengo tiempo"</td><td>Carga operativa real o falta de prioridad</td><td>Ajusta cargas o reduce el alcance del MVP</td></tr>
+    <tr><td>"Eso no es mi trabajo"</td><td>No ve beneficio personal</td><td>Conecta el problema con su día a día</td></tr>
+    <tr><td>"La IA nos va a reemplazar"</td><td>Miedo a perder el puesto</td><td>Habla claro: el objetivo es quitar tareas repetitivas, no personas <span class="pend">[mensaje a alinear con Dirección]</span></td></tr>
+    <tr><td>"No sé de tecnología"</td><td>Inseguridad</td><td>Asigna rol de experto del proceso; la herramienta se aprende en el camino, con la mentoría del programa</td></tr>
+    <tr><td>"Ya lo intentamos y no funcionó"</td><td>Experiencia previa negativa</td><td>Pregunta qué falló y diseña la prueba para evitarlo</td></tr>
+  </table>
+
+  <h2 id="equipo">Cómo formar el equipo de innovación</h2>
+  <p>Un equipo de 3 a 5 personas basta para un MVP: suficiente para cubrir el proceso, la herramienta y la medición, y pequeño para decidir rápido. Más gente no acelera; diluye la responsabilidad. Si la postulación termina siendo individual <span class="pend">[por confirmar]</span>, el participante igual necesita a un experto del proceso y a un usuario de prueba a su lado.</p>
+  <p><b>Roles mínimos</b> (una persona puede tener dos roles; el líder no debería tener el de responsable del MVP)</p>
+  <table>
+    <tr><th>Rol</th><th>Qué hace</th><th>Perfil que buscas</th></tr>
+    <tr><td>Patrocinador (tú)</td><td>Prioriza, protege tiempo, quita bloqueos, acompaña en la demo</td><td>El líder del área</td></tr>
+    <tr><td>Responsable del MVP</td><td>Coordina el trabajo semanal y las fechas</td><td>Organizado, con credibilidad en el equipo, quiere crecer</td></tr>
+    <tr><td>Experto del proceso</td><td>Conoce el problema en detalle, sus excepciones y sus datos</td><td>Quien hace la tarea todos los días</td></tr>
+    <tr><td>Constructor</td><td>Arma el prototipo con las herramientas permitidas</td><td>Curioso con la tecnología, aprende solo; no tiene que ser de TI</td></tr>
+    <tr><td>Medidor</td><td>Levanta la línea base y mide el resultado</td><td>Ordenado con datos y Excel; coordina con Finanzas la validación</td></tr>
+    <tr><td>Usuario de prueba</td><td>Usa el MVP y da retroalimentación honesta</td><td>Alguien que no lo construyó, idealmente escéptico</td></tr>
+  </table>
+  <p><b>Apoyo externo al equipo</b></p>
+  <ul>
+    <li><b>Programa de innovación:</b> dos sesiones de mentoría de dos horas (una antes de iniciar y otra en la semana 3 o 4), licencia de IA y un canal abierto con respuesta en 24 horas.</li>
+    <li><b>TI:</b> orientación sobre herramientas y validación de seguridad y datos. Horas disponibles por MVP <span class="pend">[por confirmar]</span>.</li>
+    <li><b>Mejora Continua:</b> ayuda a levantar la línea base en la semana 1 y acompaña la prueba.</li>
+    <li><b>Finanzas:</b> valida la línea base y el cálculo del beneficio a 30, 60 y 90 días.</li>
+  </ul>
+  <p><b>Criterios para elegir a las personas</b></p>
+  <ul>
+    <li>Elige por actitud y por cercanía al problema, no por jerarquía ni antigüedad.</li>
+    <li>Incluye al menos una persona que viva el problema todos los días.</li>
+    <li>Mezcla perfiles: alguien que conoce el proceso, alguien curioso con la tecnología, alguien ordenado con los números.</li>
+    <li>Si el problema cruza áreas (por ejemplo, Ventas y Almacén), suma a una persona de la otra área desde el inicio.</li>
+    <li>Pregunta antes de asignar: la participación voluntaria rinde más que la impuesta.</li>
+    <li>Verifica la carga: no pongas en el equipo a quien ya está al límite en la operación.</li>
+  </ul>
+  <p><b>Acuerdos de arranque</b> (primera reunión, 60 min)</p>
+  <ol>
+    <li>Problema en una frase y por qué importa.</li>
+    <li>Meta medible y fecha de demo.</li>
+    <li>Roles asignados con nombre.</li>
+    <li>Horario fijo semanal de trabajo y de revisión.</li>
+    <li>Límites: datos, herramientas, presupuesto.</li>
+    <li>Cómo se decide cuando no hay acuerdo (el responsable del MVP propone, el patrocinador cierra).</li>
+  </ol>
+
+  <h2 id="ciclo">Ciclo de trabajo: de la idea al resultado</h2>
+  <div class="ciclo">
+    <div><b>Problema</b>Una frase, un pilar y a quién afecta.</div>
+    <div><b>Línea base</b>Indicador y valor actual, con Mejora Continua, en la semana 1.</div>
+    <div><b>Equipo y acuerdos</b>Roles con nombre, horario, límites.</div>
+    <div><b>MVP</b>Ocho semanas. El equipo construye; el programa orienta y TI valida datos y seguridad.</div>
+    <div><b>Prueba con usuarios</b>Al menos una semana antes de la demo, con alguien que no lo construyó.</div>
+    <div><b>Demo y decisión</b>Resultado medido contra la línea base. El comité y el público eligen; el 1.º lugar pasa a producción si es funcional.</div>
+  </div>
+  <p class="nota">Calendario del primer ciclo: propuestas del 20 de noviembre al 10 de diciembre de 2026; selección en la primera semana de enero; MVP del 15 de enero al 15 de marzo de 2027; demo <span class="pend">[fecha por definir]</span>; implementación del 1.º lugar desde el segundo trimestre de 2027.</p>
+
+  <h2 id="errores">Errores comunes y cómo evitarlos</h2>
+  <table>
+    <tr><th>Error</th><th>Consecuencia</th><th>Cómo evitarlo</th></tr>
+    <tr><td>Elegir un problema demasiado grande ("rediseñar todo el proceso de compras")</td><td>No llega a demo en el ciclo</td><td>Recorta a un paso, un tipo de caso o una sucursal</td></tr>
+    <tr><td>Empezar por la herramienta</td><td>Solución buscando problema</td><td>Exige primero el problema en una frase y su línea base</td></tr>
+    <tr><td>No medir antes de empezar</td><td>No hay forma de demostrar el beneficio</td><td>Levanta la línea base en la semana 1, validada por Finanzas</td></tr>
+    <tr><td>El líder hace todo o decide todo</td><td>El equipo se desconecta; no se forma capacidad</td><td>Delega el MVP; tú quitas bloqueos</td></tr>
+    <tr><td>Tiempo "cuando se pueda"</td><td>El proyecto muere en la semana 3</td><td>Bloque fijo en calendario y revisión semanal</td></tr>
+    <tr><td>Usar datos de clientes o del ERP sin validar</td><td>Riesgo de seguridad o de cumplimiento</td><td>Consulta a TI antes de cargar cualquier dato a una herramienta; usa datos ficticios o anonimizados para probar</td></tr>
+    <tr><td>Pedir a TI que desarrolle el MVP</td><td>Se cae el principio del programa y se satura TI</td><td>El equipo construye; el programa orienta y TI valida. Un MVP funcional no requiere desarrollo en el ERP para operar</td></tr>
+    <tr><td>Castigar el intento fallido</td><td>Nadie vuelve a proponer</td><td>Reconoce el aprendizaje en público</td></tr>
+    <tr><td>Presentar sin usuario real</td><td>La demo no convence al comité</td><td>Prueba con usuarios reales al menos una semana antes de la demo</td></tr>
+  </table>
+
+  <h2 id="herramientas">Herramientas</h2>
+  <p><b>Ficha del problema</b> (completar antes de formar el equipo; es la base de la ficha de postulación)</p>
+  <table>
+    <tr><th>Campo</th><th>Respuesta</th></tr>
+    <tr><td>Problema en una frase</td><td></td></tr>
+    <tr><td>Pilar (experiencia del cliente · mejora de procesos · eficiencia · retorno)</td><td></td></tr>
+    <tr><td>¿A quién afecta y con qué frecuencia?</td><td></td></tr>
+    <tr><td>Línea base (tiempo, errores, costo, reclamos)</td><td></td></tr>
+    <tr><td>Meta medible</td><td></td></tr>
+    <tr><td>Datos que se necesitan y dónde están</td><td></td></tr>
+    <tr><td>Áreas involucradas</td><td></td></tr>
+    <tr><td>Qué queda fuera del MVP</td><td></td></tr>
+    <tr><td>Firma del supervisor (dos horas semanales por ocho semanas)</td><td></td></tr>
+  </table>
+  <p><b>Checklist del líder antes de arrancar</b></p>
+  <ul class="check">
+    <li>El problema lo eligió o validó el equipo</li>
+    <li>Hay línea base o un plan para levantarla en la semana 1</li>
+    <li>Roles asignados con nombre</li>
+    <li>Dos horas semanales bloqueadas en calendario por participante</li>
+    <li>Datos y herramientas consultados con TI</li>
+    <li>Fecha de demo definida</li>
+    <li>Jefe inmediato informado</li>
+  </ul>
+  <p><b>Guía para la revisión semanal</b> (15–20 min)</p>
+  <ol>
+    <li>¿Qué probamos esta semana?</li>
+    <li>¿Qué aprendimos? ¿Confirma o cambia el rumbo?</li>
+    <li>¿Qué nos bloquea y quién lo resuelve?</li>
+    <li>¿Qué haremos la próxima semana?</li>
+  </ol>
+  <p><b>Preguntas que un buen líder hace</b> (y las que evita)</p>
+  <table>
+    <tr><th>Haz</th><th>Evita</th></tr>
+    <tr><td>¿Cómo sabremos que funcionó?</td><td>¿Ya está listo?</td></tr>
+    <tr><td>¿Qué necesitan de mí?</td><td>¿Por qué no han avanzado?</td></tr>
+    <tr><td>¿Qué es lo más pequeño que podemos probar esta semana?</td><td>Hagámoslo completo de una vez</td></tr>
+    <tr><td>¿Qué dijo el usuario cuando lo probó?</td><td>A mí me parece que está bien</td></tr>
+  </table>
+
+  <h2 id="pendientes">Pendientes por confirmar</h2>
+  <p>Estos puntos dependen de decisiones del programa y deben cerrarse antes de distribuir la guía a los líderes.</p>
+  <ul class="check">
+    <li>Alcance del acompañamiento de TI: horas por MVP, herramientas permitidas, reglas de datos y seguridad</li>
+    <li>Postulación individual o en equipo; tamaño de equipo (3–5 es una recomendación de esta guía, no una regla aprobada)</li>
+    <li>Criterios de evaluación del comité y peso del voto del público</li>
+    <li>Fecha de la demo y qué pasa con el 1.º lugar si necesita integración o desarrollo</li>
+    <li>Mensaje oficial sobre IA y empleo, alineado con Dirección</li>
+    <li>Reparto de la bolsa de premios entre 1.º, 2.º y 3.º lugar</li>
+  </ul>
+  <p class="nota">Decidido el 14 de octubre de 2026: nombre del programa, participación abierta a todos los colaboradores, cuatro pilares, cinco finalistas, dos horas semanales con firma del supervisor, dos sesiones de mentoría, calendario del primer ciclo e implementación del 1.º lugar desde el segundo trimestre de 2027.</p>
+</main>
+</div>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Innovación por Todos · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+</body>
+</html>
