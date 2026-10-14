@@ -31,6 +31,7 @@ a{color:var(--magenta);}
 .btn{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;text-decoration:none;padding:11px 18px;border-radius:12px;border:3px solid var(--navy);color:#fff;background:var(--navy);cursor:pointer;}
 .btn.v{background:var(--verde);border-color:var(--verde);color:var(--navy);}
 .btn.ghost{background:transparent;color:var(--navy);}
+.btn.f{background:var(--fucsia);border-color:var(--fucsia);color:#fff;}
 
 /* la hoja */
 .hoja{background:#fff;max-width:900px;margin:18px auto 56px;padding:40px 44px 36px;box-shadow:0 14px 40px rgba(0,47,108,.14);border-radius:6px;position:relative;}
@@ -118,7 +119,8 @@ footer img{height:28px;}
 </div></nav>
 
 <div class="acciones">
-  <p>Puedes llenarla aquí mismo y guardarla como PDF, o descargar la versión en Word para completarla y enviarla por correo. Convocatoria: del 20 de noviembre al 10 de diciembre de 2026.</p>
+  <p>La postulación se hace en línea, con tu cuenta de CECOMSA, en el formulario del programa; las respuestas llegan directo al comité. Esta hoja es la misma ficha para preparar tus respuestas, imprimirla o descargarla en Word. Convocatoria: del 20 de noviembre al 10 de diciembre de 2026.</p>
+  <a class="btn f" id="btn-forms" href="#" hidden>Postular en línea</a>
   <a class="btn v" href="ficha-postulacion.docx" download>Descargar Word</a>
   <button class="btn" onclick="window.print()">Guardar como PDF</button>
   <button class="btn ghost" onclick="limpiar()">Limpiar</button>
@@ -145,7 +147,7 @@ footer img{height:28px;}
     <div class="fila c3">
       <div class="campo"><label>Correo o extensión</label><div class="in" contenteditable data-ph=""></div></div>
       <div class="campo"><label>Supervisor inmediato</label><div class="in" contenteditable data-ph="Quien firma el bloque 05"></div></div>
-      <div class="campo"><label>Equipo <small>(opcional, hasta 2 personas más)</small></label><div class="in" contenteditable data-ph="Nombres y áreas"></div></div>
+      <div class="campo"><label>Equipo <small>(opcional, hasta 3 personas más; pueden ser de otras áreas)</small></label><div class="in" contenteditable data-ph="Nombres y áreas"></div></div>
     </div>
   </section>
 
@@ -224,6 +226,10 @@ footer img{height:28px;}
 <footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · 2026 · borrador</span></div></footer>
 
 <script>
+// Enlace del formulario de postulación (Microsoft Forms, cuentas de CECOMSA).
+// Cuando exista, poner la URL aquí y el botón "Postular en línea" aparece solo.
+var FORMS_URL = '';
+(function(){ var b=document.getElementById('btn-forms'); if(FORMS_URL){ b.href=FORMS_URL; b.target='_blank'; b.rel='noopener'; b.hidden=false; } })();
 function marcar(el, grupo){
   if(grupo){ el.parentNode.querySelectorAll('.op').forEach(function(o){ if(o!==el) o.classList.remove('on'); }); }
   if(event && event.target && event.target.isContentEditable) return;
