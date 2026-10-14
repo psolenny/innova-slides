@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comité y criterios · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.tabs a,.tabs .dd>button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;line-height:1.2;}
+.tabs a:hover,.tabs .dd>button:hover{background:var(--soft);}
+.tabs a.on,.tabs .dd.on>button{border-color:var(--navy);background:var(--navy);color:#fff;}
+.dd{position:relative;}
+.dd>button::after{content:" ▾";font-size:11px;}
+.dd .menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 10px 28px rgba(0,47,108,.14);z-index:30;}
+.dd.open .menu{display:block;}
+@media(hover:hover){.dd:hover .menu{display:block;}}
+.dd .menu a{display:block;padding:8px 12px;border-radius:8px;border:none;font-size:14.5px;}
+.dd .menu a.on{background:var(--navy);color:#fff;}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a,.tabs .dd>button{padding:7px 10px;font-size:14px}}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+
+.ruta{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:12px;margin:14px 0;align-items:baseline;max-width:820px;}
+.ruta .d{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--magenta);white-space:nowrap;font-size:14px;}
+.ruta .t{font-size:15px;}
+details{border:2px solid var(--line);border-radius:12px;padding:0;margin:8px 0;background:#fff;}
+details summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:var(--navy);padding:12px 16px;list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"+";display:inline-block;width:18px;color:var(--fucsia);font-weight:700;}
+details[open] summary::before{content:"–";}
+details p{padding:0 16px 12px 34px;margin:0;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <div class="dd on"><button type="button">El programa</button><div class="menu"><a href="bases.html">Bases del ciclo</a><a class="on" href="comite.html">Comité y criterios</a><a href="faq.html">Preguntas frecuentes</a><a href="presentacion.html">Presentación a Dirección</a></div></div>
+    <div class="dd"><button type="button">Participar</button><div class="menu"><a href="ficha.html">Ficha de postulación</a><a href="kit.html">Kit del participante</a><a href="reglas-ia.html">Reglas de IA y datos</a><a href="mentoria.html">Canal de mentoría</a></div></div>
+    <div class="dd"><button type="button">Seguimiento</button><div class="menu"><a href="calendario.html">Calendario del ciclo</a><a href="panel.html">Panel de seguimiento</a><a href="finalistas.html">Finalistas y demo</a></div></div>
+    <a href="guia-lideres.html">Guía para líderes</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+<aside>
+  <div class="k">Contenido</div>
+  <a href="#quienes">Quiénes</a>
+  <a href="#como">Cómo decide</a>
+  <a href="#seleccion">Rúbrica de selección</a>
+  <a href="#demo">Rúbrica de la demo</a>
+  <a href="#conflictos">Conflictos y confidencialidad</a>
+  <a href="#calendario">Calendario del comité</a>
+</aside>
+
+<main>
+  <div class="eyebrow">// comité evaluador y criterios · borrador para aprobación del comité</div>
+  <h1>Comité y criterios</h1>
+  <p class="lead">Quién decide, cómo decide y con qué criterios. Se publica antes de la convocatoria para que nadie tenga que adivinar qué se evalúa.</p>
+  <div class="aviso">Borrador. Los pesos de las rúbricas están <span class="pend">[propuestos]</span> y los aprueba el comité antes del 20 de noviembre de 2026.</div>
+
+  <h2 id="quienes">Quiénes</h2>
+  <table>
+    <tr><th>Miembro</th><th>Qué mira en especial</th></tr>
+    <tr><td>Directora Administrativa</td><td>Impacto en la operación y en el cliente; viabilidad organizativa.</td></tr>
+    <tr><td>Director de TI</td><td>Datos, seguridad, viabilidad técnica y lo que implicaría implementar.</td></tr>
+    <tr><td>Encargada de Mejora Continua</td><td>Que el problema esté bien definido, que la línea base sea real y que el indicador se pueda medir.</td></tr>
+    <tr><td>Gerente de Finanzas</td><td>Beneficio económico cuando lo hay, y que los números sean validables.</td></tr>
+    <tr><td>Gerente de Proyectos de Innovación</td><td>Coordina el proceso, cuida que se apliquen las reglas y acompaña a los finalistas. <span class="pend">[Vota como los demás o solo desempata: por decidir.]</span></td></tr>
+  </table>
+
+  <h2 id="como">Cómo decide</h2>
+  <ol>
+    <li>Cada miembro puntúa todas las propuestas por separado, con la rúbrica de selección, antes de la reunión.</li>
+    <li>Se promedian los puntajes. Las propuestas con mucha dispersión entre miembros se discuten primero: ahí está el desacuerdo que vale la pena resolver.</li>
+    <li>El comité se reúne una vez para revisar las diez mejores y elegir al menos cinco finalistas <span class="pend">[máximo propuesto: ocho]</span>.</li>
+    <li>Un miembro no puntúa propuestas de su propia área ni de personas que le reportan; el promedio se calcula con los demás <span class="pend">[propuesta]</span>.</li>
+    <li>Toda propuesta recibe retroalimentación escrita: qué estuvo bien, qué faltó y qué la haría finalista en el siguiente ciclo.</li>
+  </ol>
+
+  <h2 id="seleccion">Rúbrica de selección (diciembre)</h2>
+  <p>Cuatro criterios, cada uno de 1 a 5. Pesos <span class="pend">[propuestos]</span>.</p>
+  <table>
+    <tr><th>Criterio</th><th>Peso</th><th>1</th><th>3</th><th>5</th></tr>
+    <tr><td>Problema real y medible</td><td>30%</td><td>Es una queja o una idea sin problema detrás.</td><td>El problema es claro pero el indicador es vago.</td><td>Problema concreto, frecuente, con indicador y a quién afecta.</td></tr>
+    <tr><td>Impacto en el pilar</td><td>30%</td><td>Afecta a una persona o a un caso aislado.</td><td>Afecta a un área o a un grupo de clientes.</td><td>Afecta a muchos clientes o a varias áreas, de forma repetida.</td></tr>
+    <tr><td>Viable en ocho semanas</td><td>25%</td><td>Requiere desarrollo en el ERP, compras o más gente.</td><td>Se puede hacer con esfuerzo y algo de ayuda externa.</td><td>Se puede construir con herramientas existentes y dos horas semanales.</td></tr>
+    <tr><td>Línea base clara</td><td>15%</td><td>No hay número ni forma de conseguirlo.</td><td>Hay una idea de cómo medirlo pero no el valor.</td><td>Hay valor actual o un plan concreto para levantarlo en la semana 1.</td></tr>
+  </table>
+
+  <h2 id="demo">Rúbrica de la demo (marzo)</h2>
+  <p>Se evalúa lo que se demuestra, no cómo se presenta. Pesos <span class="pend">[propuestos]</span>; se suma al voto del público <span class="pend">[20%]</span>.</p>
+  <table>
+    <tr><th>Criterio</th><th>Peso</th><th>Qué significa un 5</th></tr>
+    <tr><td>Resultado medido contra la línea base</td><td>40%</td><td>Hay valor antes y valor después, con evidencia de cómo se midió cada uno.</td></tr>
+    <tr><td>MVP funcional</td><td>30%</td><td>Funciona con datos reales o anonimizados, tiene dueño operativo y no está conectado a producción sin TI.</td></tr>
+    <tr><td>Uso real por terceros</td><td>20%</td><td>Lo usaron personas distintas de quien lo construyó, en casos reales.</td></tr>
+    <tr><td>Claridad de la evidencia</td><td>10%</td><td>Cualquier miembro del comité puede verificar los números sin preguntar.</td></tr>
+  </table>
+
+  <h2 id="conflictos">Conflictos y confidencialidad</h2>
+  <ul>
+    <li>Un miembro con relación directa con una propuesta (su área, su equipo, un familiar) lo declara antes de puntuar y se abstiene en esa propuesta.</li>
+    <li>Las propuestas y los puntajes son confidenciales hasta el anuncio de finalistas. Después se publica el nombre del equipo y el problema; los puntajes individuales no.</li>
+  </ul>
+
+  <h2 id="calendario">Calendario del comité</h2>
+  <div class="ruta">
+    <span class="d">11 dic 2026</span><span class="t">Cierre de convocatoria; el programa entrega las propuestas con confirmación del supervisor.</span>
+    <span class="d">11 – 22 dic</span><span class="t">Puntuación individual.</span>
+    <span class="d"><span class="pend">[semana del 4 ene 2027]</span></span><span class="t">Reunión de selección.</span>
+    <span class="d">1.ª sem ene</span><span class="t">Anuncio de finalistas y envío de retroalimentación a todos.</span>
+    <span class="d"><span class="pend">[tras el 15 mar]</span></span><span class="t">Demo y lugares.</span>
+  </div>
+</main>
+</div>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+<script>
+(function(){var dds=document.querySelectorAll('.dd');dds.forEach(function(d){d.querySelector('button').addEventListener('click',function(e){e.stopPropagation();dds.forEach(function(o){if(o!==d)o.classList.remove('open');});d.classList.toggle('open');});});document.addEventListener('click',function(){dds.forEach(function(o){o.classList.remove('open');});});})();
+</script>
+</body>
+</html>
