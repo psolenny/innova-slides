@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario del ciclo · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.tabs a,.tabs .dd>button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;line-height:1.2;}
+.tabs a:hover,.tabs .dd>button:hover{background:var(--soft);}
+.tabs a.on,.tabs .dd.on>button{border-color:var(--navy);background:var(--navy);color:#fff;}
+.dd{position:relative;}
+.dd>button::after{content:" ▾";font-size:11px;}
+.dd .menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 10px 28px rgba(0,47,108,.14);z-index:30;}
+.dd.open .menu{display:block;}
+@media(hover:hover){.dd:hover .menu{display:block;}}
+.dd .menu a{display:block;padding:8px 12px;border-radius:8px;border:none;font-size:14.5px;}
+.dd .menu a.on{background:var(--navy);color:#fff;}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a,.tabs .dd>button{padding:7px 10px;font-size:14px}}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+
+.ruta{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:12px;margin:14px 0;align-items:baseline;max-width:820px;}
+.ruta .d{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--magenta);white-space:nowrap;font-size:14px;}
+.ruta .t{font-size:15px;}
+details{border:2px solid var(--line);border-radius:12px;padding:0;margin:8px 0;background:#fff;}
+details summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:var(--navy);padding:12px 16px;list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"+";display:inline-block;width:18px;color:var(--fucsia);font-weight:700;}
+details[open] summary::before{content:"–";}
+details p{padding:0 16px 12px 34px;margin:0;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <div class="dd"><button type="button">El programa</button><div class="menu"><a href="bases.html">Bases del ciclo</a><a href="comite.html">Comité y criterios</a><a href="faq.html">Preguntas frecuentes</a><a href="presentacion.html">Presentación a Dirección</a></div></div>
+    <div class="dd"><button type="button">Participar</button><div class="menu"><a href="ficha.html">Ficha de postulación</a><a href="kit.html">Kit del participante</a><a href="reglas-ia.html">Reglas de IA y datos</a><a href="mentoria.html">Canal de mentoría</a></div></div>
+    <div class="dd on"><button type="button">Seguimiento</button><div class="menu"><a class="on" href="calendario.html">Calendario del ciclo</a><a href="panel.html">Panel de seguimiento</a><a href="finalistas.html">Finalistas y demo</a></div></div>
+    <a href="guia-lideres.html">Guía para líderes</a>
+  </div>
+</div></nav>
+
+<style>
+.cwrap{max-width:1100px;margin:0 auto;padding:32px 24px 64px;}
+.cwrap h1{font-size:clamp(30px,4.2vw,44px);margin-bottom:8px;}
+.lead{font-size:18px;max-width:64ch;margin-bottom:18px;}
+.linea{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:18px 0 8px;}
+.linea div{background:var(--soft);border-radius:8px;padding:10px 8px;text-align:center;font-size:12.5px;line-height:1.3;}
+.linea div b{display:block;font-family:'Space Grotesk',sans-serif;color:var(--navy);font-size:14px;}
+.linea div.now{background:var(--navy);color:#fff;}
+.linea div.now b{color:var(--verde);}
+.linea div.done{opacity:.55;}
+.linea small{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:inherit;opacity:.8;}
+h2.mes{font-size:24px;margin:34px 0 10px;padding-bottom:6px;border-bottom:3px solid var(--navy);}
+table.cal{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px;}
+table.cal th,table.cal td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+table.cal th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;}
+table.cal td.f{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--magenta);white-space:nowrap;font-size:13px;}
+table.cal tr.seg td{background:#F6FBEA;}
+table.cal tr.hito td{background:#FFF1F7;}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-right:4px;}
+.tag.h{background:var(--fucsia);color:#fff;}.tag.s{background:var(--verde);color:var(--navy);}.tag.a{background:var(--navy);color:#fff;}
+.leyenda{font-size:13px;color:var(--muted);margin:6px 0 0;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:18px;}
+@media(max-width:760px){.linea{grid-template-columns:repeat(4,1fr)}}
+</style>
+<div class="cwrap">
+  <div class="eyebrow">// calendario del primer ciclo · 2026–2027</div>
+  <h1>Calendario del ciclo</h1>
+  <p class="lead">Todas las actividades y los seguimientos del primer ciclo, mes a mes, con quién es responsable de cada una. La etapa actual se marca sola.</p>
+
+  <div class="linea" id="linea"></div>
+  <p class="leyenda"><span class="tag h">hito</span> fecha que no se mueve · <span class="tag a">actividad</span> trabajo de la etapa · <span class="tag s">seguimiento</span> punto de control del programa</p>
+
+  <h2 class="mes">Noviembre 2026</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr class="hito"><td class="f">4 – 5 nov</td><td><span class="tag h">hito</span>Taller de IA para líderes. El día 2 (5 nov) se anuncia el programa a los líderes.</td><td>Gerencia de Proyectos de Innovación</td></tr>
+    <tr><td class="f">6 – 19 nov</td><td><span class="tag a">actividad</span>Anuncio a todo el personal <span class="pend">[fecha y canal por definir]</span>. Publicación de bases, comité y criterios en su versión final.</td><td>Programa · Dirección</td></tr>
+    <tr><td class="f">antes del 20 nov</td><td><span class="tag a">actividad</span>Lista de SharePoint y flujo de confirmación del supervisor listos y probados. Licencias de IA cotizadas.</td><td>Programa · TI</td></tr>
+    <tr class="hito"><td class="f">20 nov</td><td><span class="tag h">hito</span>Abre la convocatoria en el formulario en línea.</td><td>Programa</td></tr>
+    <tr class="seg"><td class="f">27 nov</td><td><span class="tag s">seguimiento</span>Primer corte: propuestas recibidas por área y pilar; áreas que no han postulado; recordatorio a supervisores con confirmaciones pendientes.</td><td>Programa</td></tr>
+  </table>
+
+  <h2 class="mes">Diciembre 2026</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr class="seg"><td class="f">4 dic</td><td><span class="tag s">seguimiento</span>Segundo corte y última ronda de "toque de puertas" en las áreas sin propuestas.</td><td>Programa · líderes</td></tr>
+    <tr class="hito"><td class="f">10 dic · 23:59</td><td><span class="tag h">hito</span>Cierra la convocatoria.</td><td>—</td></tr>
+    <tr><td class="f">11 dic</td><td><span class="tag a">actividad</span>El programa entrega al comité las propuestas con confirmación del supervisor; las no confirmadas se devuelven con aviso.</td><td>Programa</td></tr>
+    <tr><td class="f">11 – 22 dic</td><td><span class="tag a">actividad</span>Puntuación individual con la rúbrica de selección.</td><td>Comité (5 miembros)</td></tr>
+    <tr class="seg"><td class="f">18 dic</td><td><span class="tag s">seguimiento</span>Avance de puntuación por miembro; recordatorio a quien va atrasado.</td><td>Programa</td></tr>
+  </table>
+
+  <h2 class="mes">Enero 2027</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr class="hito"><td class="f"><span class="pend">[4 – 8 ene]</span></td><td><span class="tag h">hito</span>Reunión de selección: al menos cinco finalistas.</td><td>Comité</td></tr>
+    <tr><td class="f">1.ª sem ene</td><td><span class="tag a">actividad</span>Anuncio de finalistas; retroalimentación escrita a todas las propuestas; asignación de licencias y creación del canal de Teams.</td><td>Programa · TI</td></tr>
+    <tr class="hito"><td class="f">15 ene</td><td><span class="tag h">hito</span>Inicio del MVP (semana 1 de 8).</td><td>—</td></tr>
+    <tr><td class="f">15 – 21 ene</td><td><span class="tag a">actividad</span>Mentoría 1 (2 h) con cada finalista. Línea base con Mejora Continua.</td><td>Mentores · Mejora Continua</td></tr>
+    <tr><td class="f">22 – 28 ene</td><td><span class="tag a">actividad</span>Mentoría 2 (2 h). Alcance cerrado del MVP.</td><td>Mentores</td></tr>
+    <tr class="hito"><td class="f">28 ene</td><td><span class="tag h">hito</span>Último día para retirarse como finalista.</td><td>—</td></tr>
+  </table>
+
+  <h2 class="mes">Febrero 2027</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr class="seg"><td class="f">1 – 5 feb</td><td><span class="tag s">seguimiento</span>Revisión 1 (semana 3, 30 min por finalista): primera versión, bloqueos, semáforo actualizado en el panel.</td><td>Mentores</td></tr>
+    <tr><td class="f">8 – 19 feb</td><td><span class="tag a">actividad</span>Semanas 4 y 5: prueba con usuarios reales, corrección, primeros datos de "después".</td><td>Finalistas</td></tr>
+    <tr class="seg"><td class="f">22 – 26 feb</td><td><span class="tag s">seguimiento</span>Revisión 2 (semana 6): alcance final, dueño operativo, decisión sobre sesiones extra.</td><td>Mentores · comité</td></tr>
+  </table>
+
+  <h2 class="mes">Marzo 2027</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr><td class="f">1 – 12 mar</td><td><span class="tag a">actividad</span>Semanas 7 y 8: medición en uso normal y preparación de la demo. Revisión de datos por TI antes de la demo.</td><td>Finalistas · TI</td></tr>
+    <tr class="hito"><td class="f">15 mar</td><td><span class="tag h">hito</span>Fin del MVP.</td><td>—</td></tr>
+    <tr class="hito"><td class="f"><span class="pend">[fecha tras el 15 mar]</span></td><td><span class="tag h">hito</span>Demo ante comité y público. Tres lugares.</td><td>Comité · público · programa</td></tr>
+    <tr class="seg"><td class="f">última sem mar</td><td><span class="tag s">seguimiento</span>Informe del ciclo a Dirección: propuestas, áreas, finalistas, resultados medidos. Decisión sobre implementación e inicio del segundo ciclo.</td><td>Programa · Dirección</td></tr>
+  </table>
+
+  <h2 class="mes">Abril – junio 2027 (Q2)</h2>
+  <table class="cal">
+    <tr><th>Fecha</th><th>Qué pasa</th><th>Responsable</th></tr>
+    <tr><td class="f">desde abr</td><td><span class="tag a">actividad</span>Implementación del primer lugar en la operación, con dueño operativo y costo recurrente definidos; integración por TI si toca un sistema. Luego segundo y tercero según capacidad.</td><td>Dueño operativo · TI</td></tr>
+    <tr class="seg"><td class="f">+30 días</td><td><span class="tag s">seguimiento</span>Primera medición en uso real de cada MVP implementado.</td><td>Dueño operativo · Finanzas / comité</td></tr>
+    <tr class="seg"><td class="f">+60 días</td><td><span class="tag s">seguimiento</span>Segunda medición.</td><td>Dueño operativo · Finanzas / comité</td></tr>
+    <tr class="seg"><td class="f">+90 días</td><td><span class="tag s">seguimiento</span>Tercera medición y cierre del seguimiento: resultado validado por Finanzas (económico) o por el comité y Dirección (cualitativo).</td><td>Finanzas · comité · Dirección</td></tr>
+  </table>
+
+  <p class="nota">Las fechas entre [corchetes] están por fijar. Los días de las mentorías y revisiones son semanas de referencia; la hora exacta se acuerda con cada finalista. Este calendario y el panel leen la misma fuente de datos para marcar la etapa actual.</p>
+</div>
+<script>
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+var DEF=[{"id":"anuncio","nombre":"Anuncio","fecha":"5 nov 2026"},{"id":"convocatoria","nombre":"Convocatoria","fecha":"20 nov – 10 dic"},{"id":"evaluacion","nombre":"Evaluación","fecha":"11 – 22 dic"},{"id":"seleccion","nombre":"Selección","fecha":"1.ª sem ene"},{"id":"mvp","nombre":"MVP","fecha":"15 ene – 15 mar"},{"id":"demo","nombre":"Demo","fecha":"[tras el 15 mar]"},{"id":"implementacion","nombre":"Implementación","fecha":"desde Q2 2027"}];
+function render(D){ var et=D.etapas||DEF; var cur=D.etapa||'anuncio'; var idx=et.findIndex(function(e){return e.id===cur;}); document.getElementById('linea').innerHTML=et.map(function(e,i){return '<div class="'+(i<idx?'done':(i===idx?'now':''))+'"><b>'+esc(e.nombre)+'</b><small>'+esc(e.fecha)+'</small></div>';}).join(''); }
+fetch('datos.json',{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(render).catch(function(){ render({etapas:DEF,etapa:'anuncio'}); });
+</script>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+<script>
+(function(){var dds=document.querySelectorAll('.dd');dds.forEach(function(d){d.querySelector('button').addEventListener('click',function(e){e.stopPropagation();dds.forEach(function(o){if(o!==d)o.classList.remove('open');});d.classList.toggle('open');});});document.addEventListener('click',function(){dds.forEach(function(o){o.classList.remove('open');});});})();
+</script>
+</body>
+</html>
