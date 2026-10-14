@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit del participante · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;}
+.tabs a{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;}
+.tabs a:hover{background:var(--soft);}
+.tabs a.on{border-color:var(--navy);background:var(--navy);color:#fff;}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a{padding:7px 10px;font-size:14px}}
+
+.formula{font-family:'JetBrains Mono',monospace;font-size:15px;background:var(--navy);color:#fff;border-radius:12px;padding:14px 18px;margin:8px 0 14px;line-height:1.6;}
+.formula b{color:var(--verde);}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:10px 0 14px;}
+.caja{border:3px solid var(--navy);border-left-width:10px;border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:6px 6px 0 var(--navy);}
+.caja b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.caja.m{border-left-color:var(--magenta);}.caja.f{border-left-color:var(--fucsia);}.caja.o{border-left-color:var(--naranja);}.caja.v{border-left-color:var(--verde);}
+.prompt{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--soft);border-left:5px solid var(--fucsia);border-radius:0 10px 10px 0;padding:12px 14px;margin:8px 0 10px;line-height:1.55;color:var(--ink);}
+.prompt .k{display:block;font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:6px;}
+.resumen{display:grid;gap:8px;margin:16px 0 8px;}
+.resumen div{display:flex;gap:12px;align-items:flex-start;background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;font-size:15px;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+.resumen .n{font-family:'JetBrains Mono',monospace;color:var(--verde);font-weight:700;flex:none;}
+.sem{border:3px solid;border-left-width:14px;border-radius:12px;padding:12px 16px 4px;margin:10px 0;font-size:15px;}
+.sem b{display:block;font-family:'Space Grotesk',sans-serif;font-size:17px;margin-bottom:6px;}
+.sem.v{border-color:var(--verde);background:#F6FBEA;}.sem.v b{color:#4F7300;}
+.sem.o{border-color:var(--naranja);background:#FFF6EF;}.sem.o b{color:#B34A00;}
+.sem.r{border-color:var(--fucsia);background:#FFF1F7;}.sem.r b{color:var(--magenta);}
+.sem ul{margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <a href="presentacion.html">Presentación</a>
+    <a href="guia-lideres.html">Guía para líderes</a>
+    <a href="ficha.html">Ficha de postulación</a>
+    <a class="on" href="kit.html">Kit del participante</a>
+    <a href="reglas-ia.html">Reglas de IA y datos</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+<aside>
+  <div class="k">Contenido</div>
+  <a href="#califica">¿Tu idea califica?</a>
+  <a href="#problema">Escribir el problema</a>
+  <a href="#linea-base">La línea base</a>
+  <a href="#mvp">Qué puede ser un MVP</a>
+  <a href="#plan">Plan de ocho semanas</a>
+  <a href="#ia">Usar la licencia de IA</a>
+  <a href="#mentoria">Las dos mentorías</a>
+  <a href="#demo">La demo de cinco minutos</a>
+  <a href="#checklists">Checklists</a>
+  <a href="#faq">Preguntas frecuentes</a>
+</aside>
+
+<main>
+  <div class="eyebrow">// kit del participante · borrador</div>
+  <h1>Kit del participante</h1>
+  <p class="lead">Todo lo que necesitas para pasar de "esto me molesta todos los días" a un MVP medido en una demo de cinco minutos. No hace falta saber de tecnología: hace falta conocer el problema, medirlo y probar.</p>
+  <div class="aviso">Borrador. Lo marcado entre <span class="pend">[corchetes]</span> depende de decisiones pendientes (proveedor de la licencia, canal de mentoría, fecha de la demo).</div>
+
+  <h2 id="califica">¿Tu idea califica?</h2>
+  <p>Responde sí o no. Con cuatro síes, postula. Con tres, ajusta lo que falta antes de enviar la ficha.</p>
+  <table>
+    <tr><th>Pregunta</th><th>Si la respuesta es no…</th></tr>
+    <tr><td>¿Puedes describir el problema sin mencionar la solución?</td><td>Todavía tienes una herramienta buscando problema. Vuelve a la sección siguiente.</td></tr>
+    <tr><td>¿Pasa con frecuencia (cada día, cada semana) y a más de una persona?</td><td>Puede ser real, pero no alcanza para ocho semanas de trabajo. Busca uno más repetido.</td></tr>
+    <tr><td>¿Lo puedes contar o cronometrar (minutos, errores, reclamos, pesos)?</td><td>Sin número no hay línea base y sin línea base no hay demo. Pregunta a Mejora Continua cómo medirlo.</td></tr>
+    <tr><td>¿Entra en uno de los cuatro pilares: experiencia del cliente, mejora de procesos, eficiencia, retorno?</td><td>Casi todo entra. Si no encuentras el pilar, probablemente el problema no está claro aún.</td></tr>
+  </table>
+  <div class="senal"><b>Lo que no es una propuesta:</b> pedir que TI desarrolle algo, cambiar el ERP, comprar un sistema nuevo, o una queja sin indicador. Esas cosas van por los canales normales, no por el programa.</div>
+
+  <h2 id="problema">Escribir el problema</h2>
+  <p>Usa esta fórmula, en una sola frase:</p>
+  <div class="formula">Cada <b>[frecuencia]</b>, <b>[quién]</b> tiene que <b>[qué hace hoy]</b> y eso provoca <b>[consecuencia medible]</b>.</div>
+  <table>
+    <tr><th>Débil</th><th>Fuerte</th></tr>
+    <tr><td>"Necesitamos un sistema para las cotizaciones."</td><td>"Cada semana, el equipo de ventas arma a mano unas __ cotizaciones y tarda __ minutos en cada una porque los precios se buscan en tres lugares distintos."</td></tr>
+    <tr><td>"Los clientes se quejan de la entrega."</td><td>"Cada mes recibimos __ llamadas de clientes preguntando dónde está su pedido, y cada llamada le toma __ minutos a ventas."</td></tr>
+    <tr><td>"Hay que automatizar los reportes."</td><td>"Cada lunes, __ personas dedican __ horas a copiar datos de Odoo a Excel para un reporte que se lee una vez."</td></tr>
+  </table>
+  <p class="nota">Los espacios en blanco son tuyos: el programa no acepta cifras inventadas. Si no tienes el número, escribe cómo lo vas a conseguir en la semana 1.</p>
+
+  <h2 id="linea-base">La línea base</h2>
+  <p>La línea base es el valor del indicador <i>antes</i> de tocar nada. Es lo único que permite decir en la demo "pasamos de X a Y". Se levanta en la semana 1, con apoyo de Mejora Continua.</p>
+  <ol>
+    <li><b>Elige un solo indicador</b> principal: minutos por caso, casos por semana, errores por lote, reclamos por mes, pesos por pedido. Si hay dos, elige el que Finanzas o el comité puedan validar más fácil.</li>
+    <li><b>Define cómo se cuenta</b>: desde qué momento hasta cuál, quién lo registra, con qué herramienta (cronómetro del celular, una hoja de registro, un reporte de Odoo).</li>
+    <li><b>Mide dos semanas normales</b>, no una semana de cierre ni una de feria. Anota cada caso en una hoja simple: fecha, quién, cuánto.</li>
+    <li><b>Guarda la evidencia</b>: la hoja de registro o el reporte es parte de lo que presentas. Un número sin su origen no cuenta.</li>
+  </ol>
+  <table>
+    <tr><th>Fecha</th><th>Caso</th><th>Quién lo atendió</th><th>Valor (min, errores, etc.)</th><th>Observación</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p class="nota">Hoja de registro mínima. Cópiala a Excel; con 20 o 30 casos ya tienes una línea base defendible.</p>
+
+  <h2 id="mvp">Qué puede ser un MVP</h2>
+  <p>Un MVP es la versión más pequeña de la solución que ya se puede usar con casos reales. No tiene que ser software, y nunca es un desarrollo dentro del ERP.</p>
+  <div class="grid3">
+    <div class="caja m"><b>Un flujo nuevo</b>Un formulario que reemplaza al correo, una regla de quién hace qué, una lista de verificación que elimina un paso.</div>
+    <div class="caja f"><b>Un asistente con IA</b>Un prompt bien armado que redacta, clasifica, resume o revisa algo que hoy se hace a mano, con datos ficticios o anonimizados.</div>
+    <div class="caja o"><b>Un tablero o plantilla</b>Una hoja de Excel o un panel que muestra lo que hoy nadie ve a tiempo, alimentado con datos que ya existen.</div>
+    <div class="caja v"><b>Una automatización simple</b>Un flujo en las herramientas que ya tiene la empresa <span class="pend">[cuáles, por confirmar con TI]</span> que mueve información sin que alguien la copie.</div>
+  </div>
+  <p><b>"Funcional" significa</b>, para el comité: funciona con datos reales o anonimizados, lo usó alguien distinto de quien lo construyó, tiene un dueño operativo que lo seguirá usando, y no está conectado a producción sin revisión de TI.</p>
+
+  <h2 id="plan">Plan de ocho semanas</h2>
+  <p>Del 15 de enero al 15 de marzo de 2027. Dos horas por semana autorizadas por tu supervisor; si necesitas más, es tu decisión, no una obligación.</p>
+  <table>
+    <tr><th>Semana</th><th>Qué haces</th><th>Qué entregas</th></tr>
+    <tr><td>1</td><td>Mentoría 1. Línea base con Mejora Continua. Confirmas indicador y meta.</td><td>Hoja de registro iniciada; ficha ajustada.</td></tr>
+    <tr><td>2</td><td>Mentoría 2. Diseñas la versión mínima: qué entra, qué queda fuera.</td><td>Un boceto en una página.</td></tr>
+    <tr><td>3</td><td><b>Revisión 1.</b> Construyes la primera versión, aunque sea fea.</td><td>Algo que se pueda tocar.</td></tr>
+    <tr><td>4</td><td>Lo prueban dos o tres compañeros con casos reales. Anotas qué falla.</td><td>Lista de fallos y ajustes.</td></tr>
+    <tr><td>5</td><td>Corriges y vuelves a probar. Empiezas a medir el indicador con el MVP en uso.</td><td>Primeros datos "después".</td></tr>
+    <tr><td>6</td><td><b>Revisión 2.</b> Decides qué más cabe y qué no. Confirmas el dueño operativo.</td><td>Alcance final del MVP.</td></tr>
+    <tr><td>7</td><td>Mides en serio: una o dos semanas de uso normal.</td><td>Indicador antes/después con evidencia.</td></tr>
+    <tr><td>8</td><td>Preparas la demo. Ensayas con alguien que no conoce el problema.</td><td>Demo de cinco minutos lista.</td></tr>
+  </table>
+  <p class="nota">Las revisiones de las semanas 3 y 6 son con el programa, no son exámenes: sirven para quitar bloqueos y evitar que llegues a la semana 8 sin nada medido.</p>
+
+  <h2 id="ia">Usar la licencia de IA</h2>
+  <p>El programa te asigna una licencia <span class="pend">[proveedor y plan por confirmar]</span>. Antes de escribir el primer prompt, lee las <a href="reglas-ia.html">reglas de IA y datos</a>: la regla corta es que nunca pegas datos de clientes, empleados, finanzas ni contraseñas; usas datos ficticios o anonimizados.</p>
+  <p>Prompts que funcionan en cada etapa. Copia, pega y rellena los corchetes.</p>
+  <div class="prompt"><span class="k">para aclarar el problema</span>Trabajo en [área] de una empresa de tecnología. Cada [frecuencia] tengo que [tarea] y eso provoca [consecuencia]. Hazme diez preguntas para entender mejor el problema antes de pensar en soluciones. No propongas soluciones todavía.</div>
+  <div class="prompt"><span class="k">para definir el indicador</span>Este es mi problema: [frase]. Propón tres indicadores que se puedan medir con un cronómetro, un conteo o un reporte, y dime cómo levantar la línea base en dos semanas con una hoja simple.</div>
+  <div class="prompt"><span class="k">para diseñar la versión mínima</span>Quiero resolver [problema] en ocho semanas, dedicando dos horas por semana, sin programar y sin tocar el ERP. Dame tres versiones mínimas, de la más simple a la más completa, y para cada una qué herramienta de oficina usarías y qué queda fuera.</div>
+  <div class="prompt"><span class="k">para construir un asistente</span>Actúa como [rol, p. ej. asistente que clasifica solicitudes de clientes]. Las categorías son [lista]. Cuando te pegue un texto, responde solo con la categoría y una línea de justificación. Aquí van cinco ejemplos ficticios: [ejemplos inventados por ti, sin nombres reales].</div>
+  <div class="prompt"><span class="k">para preparar la demo</span>Tengo cinco minutos para presentar esto a un comité: problema [frase], línea base [valor], lo que construí [descripción], resultado [valor después], qué sigue. Dame un guion de cinco minutos con una frase de apertura y una de cierre, sin adjetivos.</div>
+  <div class="senal"><b>Regla de oro:</b> la IA propone, tú verificas. Todo número, regla o texto que salga de la herramienta lo revisas antes de usarlo. En la demo declaras qué parte hizo la IA.</div>
+
+  <h2 id="mentoria">Las dos mentorías</h2>
+  <p>Dos sesiones de dos horas, antes de construir. No son clases: son trabajo sobre tu propuesta.</p>
+  <table>
+    <tr><th></th><th>Mentoría 1 · semana 1</th><th>Mentoría 2 · semana 2</th></tr>
+    <tr><td><b>Trae</b></td><td>Tu ficha, lo que sepas del indicador y una lista de a quién le afecta el problema.</td><td>La línea base en marcha y una idea de la versión mínima, aunque sea en papel.</td></tr>
+    <tr><td><b>Sales con</b></td><td>Indicador y meta confirmados; plan de medición; qué datos puedes usar y cuáles no.</td><td>Alcance cerrado del MVP; herramienta elegida; quién lo probará en la semana 4.</td></tr>
+  </table>
+  <p>Entre sesiones y durante las ocho semanas hay un canal abierto <span class="pend">[Teams, por confirmar]</span> para preguntas cortas. Las respuestas no son inmediatas; planifica con un día de margen.</p>
+
+  <h2 id="demo">La demo de cinco minutos</h2>
+  <p>El comité y el público votan lo que ven. Cinco minutos, esta estructura, sin diapositivas de relleno.</p>
+  <table>
+    <tr><th>Minuto</th><th>Qué dices</th><th>Qué muestras</th></tr>
+    <tr><td>0–1</td><td>El problema en una frase y a quién le pasa.</td><td>Nada. Solo tú.</td></tr>
+    <tr><td>1–2</td><td>La línea base: el número de antes y cómo lo mediste.</td><td>La hoja de registro o el reporte.</td></tr>
+    <tr><td>2–4</td><td>Lo que construiste, en vivo, con un caso real o anonimizado.</td><td>El MVP funcionando. Si se cae, lo dices y sigues.</td></tr>
+    <tr><td>4–5</td><td>El número de después, quién lo usa hoy y qué haría falta para que lo usen todos.</td><td>Antes vs. después, una sola cifra.</td></tr>
+  </table>
+  <p>Lo que se evalúa es el resultado medido, no la presentación. Criterios y pesos <span class="pend">[propuestos, por aprobar con el comité]</span>: problema real y medible, impacto en el pilar, MVP funcional, claridad de la evidencia.</p>
+
+  <h2 id="checklists">Checklists</h2>
+  <p><b>Antes de enviar la ficha</b></p>
+  <ul class="check">
+    <li>El problema está escrito con la fórmula y sin mencionar la solución</li>
+    <li>Tengo un indicador y sé cómo contarlo</li>
+    <li>Tengo la línea base o un plan para levantarla en la semana 1</li>
+    <li>Mi supervisor leyó la ficha y firma las dos horas semanales</li>
+    <li>Leí las reglas de IA y datos</li>
+  </ul>
+  <p><b>Revisión de la semana 3</b></p>
+  <ul class="check">
+    <li>La línea base está levantada con evidencia</li>
+    <li>Existe una primera versión que se puede tocar</li>
+    <li>Sé quién la va a probar en la semana 4</li>
+    <li>No he cargado datos reales de clientes o empleados a ninguna herramienta</li>
+  </ul>
+  <p><b>Revisión de la semana 6</b></p>
+  <ul class="check">
+    <li>Dos o tres personas distintas de mí ya lo usaron</li>
+    <li>Tengo primeros datos de "después"</li>
+    <li>Hay un dueño operativo con nombre</li>
+    <li>Sé qué queda fuera y no lo voy a intentar</li>
+  </ul>
+
+  <h2 id="faq">Preguntas frecuentes</h2>
+  <p><b>¿Puedo postular en equipo?</b> <span class="pend">[Por confirmar: individual o equipos de hasta tres; la ficha ya deja espacio para dos personas más.]</span></p>
+  <p><b>No tengo computadora ni correo. ¿Cómo participo?</b> Tu supervisor puede enviar la ficha por ti y el programa te asigna el acceso que necesites durante el MVP <span class="pend">[canal por confirmar]</span>.</p>
+  <p><b>¿Y si mi supervisor no firma?</b> Habla primero con él o ella sobre el problema, no sobre el programa. Si el problema le importa, las dos horas aparecen. Si no, el programa puede mediar <span class="pend">[por definir cómo]</span>.</p>
+  <p><b>¿Qué pasa si no quedo entre los cinco?</b> Recibes retroalimentación escrita y tu propuesta entra al banco de ideas con nombre. El segundo y tercer lugar de este ciclo, y las propuestas del banco, tienen prioridad en el siguiente.</p>
+  <p><b>¿La idea es mía o de la empresa?</b> <span class="pend">[Por confirmar con RRHH antes del anuncio.]</span> El reconocimiento público es tuyo siempre.</p>
+  <p><b>¿Puedo usar mi cuenta personal de IA?</b> No con información de la empresa. Usa la licencia del programa, que tiene las condiciones de datos revisadas por TI.</p>
+  <p><b>¿Trabajo en TI, puedo concursar?</b> No en este ciclo. TI orienta, revisa datos y seguridad y lleva el primer lugar a producción.</p>
+  <p><b>¿Hay que programar?</b> No. La mayoría de los MVP serán flujos, plantillas, asistentes con IA o automatizaciones simples con herramientas que ya existen.</p>
+</main>
+</div>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+</body>
+</html>
