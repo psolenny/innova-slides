@@ -25,10 +25,18 @@ a{color:var(--magenta);}
 .nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
 .nav img{height:40px;width:auto;}
 .nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
-.tabs{display:flex;gap:4px;flex-wrap:wrap;}
-.tabs a{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;}
-.tabs a:hover{background:var(--soft);}
-.tabs a.on{border-color:var(--navy);background:var(--navy);color:#fff;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.tabs a,.tabs .dd>button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;line-height:1.2;}
+.tabs a:hover,.tabs .dd>button:hover{background:var(--soft);}
+.tabs a.on,.tabs .dd.on>button{border-color:var(--navy);background:var(--navy);color:#fff;}
+.dd{position:relative;}
+.dd>button::after{content:" ▾";font-size:11px;}
+.dd .menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 10px 28px rgba(0,47,108,.14);z-index:30;}
+.dd.open .menu{display:block;}
+@media(hover:hover){.dd:hover .menu{display:block;}}
+.dd .menu a{display:block;padding:8px 12px;border-radius:8px;border:none;font-size:14.5px;}
+.dd .menu a.on{background:var(--navy);color:#fff;}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a,.tabs .dd>button{padding:7px 10px;font-size:14px}}
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
 .hero{background:var(--navy);color:#fff;padding:72px 0 64px;}
 .hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--verde);margin-bottom:16px;}
@@ -63,10 +71,29 @@ h2{font-size:clamp(28px,4vw,44px);margin-bottom:12px;}
 .tile p{font-size:15px;color:var(--muted);}
 .tile .go{display:inline-block;margin-top:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--navy);}
 .nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-top:18px;max-width:80ch;line-height:1.55;}
+.estado{background:var(--soft);border-bottom:1px solid var(--line);padding:14px 0 16px;}
+.et-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.et-h a{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none;}
+.linea{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.linea div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 6px;text-align:center;font-size:12px;line-height:1.25;}
+.linea div b{display:block;font-family:'Space Grotesk',sans-serif;color:var(--navy);font-size:13.5px;}
+.linea div.now{background:var(--navy);border-color:var(--navy);color:#fff;}
+.linea div.now b{color:var(--verde);}
+.linea div.done{opacity:.55;}
+.linea small{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.85;}
+.et-next{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);margin-top:8px;}
+@media(max-width:760px){.linea{grid-template-columns:repeat(4,1fr)}}
+.docgrp{margin-top:26px;}
+.docgrp h3{font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--fucsia);margin-bottom:10px;}
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.doc{display:block;text-decoration:none;color:inherit;border:2px solid var(--navy);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:5px 5px 0 var(--navy);transition:transform .08s;}
+.doc:hover{transform:translate(-2px,-2px);}
+.doc b{display:block;font-family:'Space Grotesk',sans-serif;font-size:17px;color:var(--navy);margin-bottom:4px;}
+.doc span{font-size:13.5px;color:var(--muted);}
 footer{background:var(--soft);padding:28px 0;margin-top:24px;font-size:13px;color:var(--muted);}
 footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
 footer img{height:28px;}
-@media(max-width:640px){.nav .in{gap:12px}.tabs a{padding:7px 10px;font-size:14px}.hero{padding:48px 0 40px}}
+@media(max-width:640px){.hero{padding:48px 0 40px}}
 </style>
 </head>
 <body>
@@ -76,13 +103,18 @@ footer img{height:28px;}
   <span class="brand">Programa de Innovación</span>
   <div class="tabs">
     <a class="on" href="index.html">Inicio</a>
-    <a href="presentacion.html">Presentación</a>
+    <div class="dd"><button type="button">El programa</button><div class="menu"><a href="bases.html">Bases del ciclo</a><a href="comite.html">Comité y criterios</a><a href="faq.html">Preguntas frecuentes</a><a href="presentacion.html">Presentación a Dirección</a></div></div>
+    <div class="dd"><button type="button">Participar</button><div class="menu"><a href="ficha.html">Ficha de postulación</a><a href="kit.html">Kit del participante</a><a href="reglas-ia.html">Reglas de IA y datos</a><a href="mentoria.html">Canal de mentoría</a></div></div>
+    <div class="dd"><button type="button">Seguimiento</button><div class="menu"><a href="calendario.html">Calendario del ciclo</a><a href="panel.html">Panel de seguimiento</a><a href="finalistas.html">Finalistas y demo</a></div></div>
     <a href="guia-lideres.html">Guía para líderes</a>
-    <a href="ficha.html">Ficha de postulación</a>
-    <a href="kit.html">Kit del participante</a>
-    <a href="reglas-ia.html">Reglas de IA y datos</a>
   </div>
 </div></nav>
+
+<div class="estado"><div class="wrap">
+  <div class="et-h"><span class="eyebrow" style="margin:0">// estado del ciclo</span><a href="calendario.html">Ver calendario completo →</a></div>
+  <div class="linea" id="linea"></div>
+  <div class="et-next" id="et-next"></div>
+</div></div>
 
 <header class="hero"><div class="wrap">
   <div class="eyebrow">// cecomsa · primer ciclo · 2026–2027</div>
@@ -119,8 +151,8 @@ footer img{height:28px;}
   <div class="steps">
     <div class="step"><b>Convocatoria</b>Abierta a todos los colaboradores, individual o en equipos de hasta cuatro personas, de una o varias áreas, bajo uno de los cuatro pilares.</div>
     <div class="step"><b>Ficha</b>El problema, un indicador y su valor actual, en un formulario en línea. El supervisor confirma por correo las dos horas semanales.</div>
-    <div class="step"><b>Selección</b>El comité elige cinco finalistas con criterios publicados.</div>
-    <div class="step"><b>Mentoría</b>Dos sesiones de dos horas, licencia de IA y un canal abierto durante el ciclo.</div>
+    <div class="step"><b>Selección</b>El comité elige al menos cinco finalistas con criterios publicados.</div>
+    <div class="step"><b>Mentoría</b>Al menos dos sesiones de dos horas, licencia de IA y un canal abierto durante el ciclo.</div>
     <div class="step"><b>Ocho semanas de MVP</b>El participante construye; el programa orienta y valida. Revisiones en las semanas 3 y 6.</div>
     <div class="step"><b>Demo y tres lugares</b>Voto del comité y del público. El 1.º lugar, si es un MVP funcional, se implementa en la operación.</div>
   </div>
@@ -134,7 +166,7 @@ footer img{height:28px;}
     <span class="d">5 nov 2026</span><span class="t">Anuncio a los líderes en el día 2 del taller de IA; luego a todo el personal.</span>
     <span class="d">20 nov – 10 dic</span><span class="t">Recepción de propuestas.</span>
     <span class="d">Diciembre</span><span class="t">Evaluación del comité.</span>
-    <span class="d">1.ª semana de enero</span><span class="t">Selección de los cinco finalistas.</span>
+    <span class="d">1.ª semana de enero</span><span class="t">Selección de al menos cinco finalistas.</span>
     <span class="d">15 ene – 15 mar 2027</span><span class="t">Construcción del MVP, mentoría y revisiones intermedias.</span>
     <span class="d">Demo</span><span class="t">1.º, 2.º y 3.º lugar · <span class="pend">[fecha, tras el 15 de marzo]</span></span>
     <span class="d">Desde Q2 2027</span><span class="t">Implementación del 1.º lugar, si es MVP funcional, y decisión sobre el segundo ciclo.</span>
@@ -153,17 +185,37 @@ footer img{height:28px;}
 </div></section>
 
 <section id="documentos"><div class="wrap">
-  <div class="eyebrow">// documentos</div>
+  <div class="eyebrow">// todo el programa</div>
   <h2>Lo que necesitas según tu rol.</h2>
-  <div class="two">
-    <a class="tile" href="presentacion.html"><span class="k">para aprobación</span><h3>Presentación a Dirección</h3><p>Quince láminas: el cambio, por qué ahora, los pilares, cómo funciona, por qué participaría un colaborador, antecedentes, qué gana la empresa, roles, inversión, cómo se mide, riesgos, ruta y la decisión que se pide.</p><span class="go">Abrir presentación →</span></a>
-    <a class="tile" href="guia-lideres.html"><span class="k">para líderes</span><h3>Guía para líderes</h3><p>Cómo motivar y apoyar a tu equipo, cómo formar el equipo que construye el MVP y cómo llevarlo hasta la demo.</p><span class="go">Abrir guía →</span></a>
-    <a class="tile" href="ficha.html"><span class="k">para postular</span><h3>Ficha de postulación</h3><p>Una página: quién propone, el problema, cómo lo medirías, la solución que imaginas y los compromisos. Se llena en línea con la cuenta de CECOMSA; aquí puedes prepararla, imprimirla o descargarla en Word.</p><span class="go">Abrir ficha →</span></a>
-    <a class="tile" href="kit.html"><span class="k">para participantes</span><h3>Kit del participante</h3><p>Cómo saber si tu idea califica, escribir el problema, levantar la línea base, plan de ocho semanas, prompts para la licencia de IA, la demo de cinco minutos y preguntas frecuentes.</p><span class="go">Abrir kit →</span></a>
-    <a class="tile" href="reglas-ia.html"><span class="k">para todos</span><h3>Reglas de IA y datos</h3><p>Semáforo de datos, herramientas permitidas, qué revisa TI y cuándo, por qué nada se conecta a los sistemas sin TI y qué hacer si algo sale mal.</p><span class="go">Abrir reglas →</span></a>
-  </div>
+  <div class="docgrp"><h3>El programa</h3><div class="docs">
+    <a class="doc" href="bases.html"><b>Bases del ciclo</b><span>Las reglas del primer ciclo, en doce puntos.</span></a>
+    <a class="doc" href="comite.html"><b>Comité y criterios</b><span>Quién evalúa, cómo decide y las rúbricas con sus pesos.</span></a>
+    <a class="doc" href="faq.html"><b>Preguntas frecuentes</b><span>Respuestas cortas, antes, durante y después del ciclo.</span></a>
+    <a class="doc" href="presentacion.html"><b>Presentación a Dirección</b><span>Quince láminas para la aprobación del primer ciclo.</span></a>
+  </div></div>
+  <div class="docgrp"><h3>Participar</h3><div class="docs">
+    <a class="doc" href="ficha.html"><b>Ficha de postulación</b><span>Se llena en línea con la cuenta de CECOMSA; aquí la preparas, imprimes o descargas en Word.</span></a>
+    <a class="doc" href="kit.html"><b>Kit del participante</b><span>Cómo escribir el problema, medirlo, construir el MVP y presentarlo en cinco minutos.</span></a>
+    <a class="doc" href="reglas-ia.html"><b>Reglas de IA y datos</b><span>Semáforo de datos, herramientas permitidas y qué revisa TI.</span></a>
+    <a class="doc" href="mentoria.html"><b>Canal de mentoría</b><span>Las sesiones, quién mentorea y cómo pedir ayuda.</span></a>
+  </div></div>
+  <div class="docgrp"><h3>Seguimiento</h3><div class="docs">
+    <a class="doc" href="calendario.html"><b>Calendario del ciclo</b><span>Actividades, hitos y seguimientos, mes a mes, con responsables.</span></a>
+    <a class="doc" href="panel.html"><b>Panel de seguimiento</b><span>Convocatoria, evaluación, MVP y resultados en cifras.</span></a>
+    <a class="doc" href="finalistas.html"><b>Finalistas y demo</b><span>Los equipos, su problema, su indicador y lo que demostraron.</span></a>
+    <a class="doc" href="guia-lideres.html"><b>Guía para líderes</b><span>Cómo motivar, formar el equipo y llevarlo hasta la demo.</span></a>
+  </div></div>
 </div></section>
 
 <footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · 2026</span></div></footer>
+<script>
+(function(){var dds=document.querySelectorAll('.dd');dds.forEach(function(d){d.querySelector('button').addEventListener('click',function(e){e.stopPropagation();dds.forEach(function(o){if(o!==d)o.classList.remove('open');});d.classList.toggle('open');});});document.addEventListener('click',function(){dds.forEach(function(o){o.classList.remove('open');});});})();
+</script>
+<script>
+(function(){function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var DEF=[{"id":"anuncio","nombre":"Anuncio","fecha":"5 nov 2026"},{"id":"convocatoria","nombre":"Convocatoria","fecha":"20 nov – 10 dic"},{"id":"evaluacion","nombre":"Evaluación","fecha":"11 – 22 dic"},{"id":"seleccion","nombre":"Selección","fecha":"1.ª sem ene"},{"id":"mvp","nombre":"MVP","fecha":"15 ene – 15 mar"},{"id":"demo","nombre":"Demo","fecha":"[tras el 15 mar]"},{"id":"implementacion","nombre":"Implementación","fecha":"desde Q2 2027"}];
+function render(D){var et=D.etapas||DEF,cur=D.etapa||'anuncio',idx=et.findIndex(function(e){return e.id===cur;});document.getElementById('linea').innerHTML=et.map(function(e,i){return '<div class="'+(i<idx?'done':(i===idx?'now':''))+'"><b>'+esc(e.nombre)+'</b><small>'+esc(e.fecha)+'</small></div>';}).join('');var nx=et[idx+1];var c=D.convocatoria||{};var tot=(c.porDia&&c.porDia.length)?c.porDia.reduce(function(a,r){return a+r.n;},0):((c.confirmadas||0)+(c.pendientes||0));var extra=(cur==='convocatoria'||tot>0)?(' · propuestas recibidas: '+tot):'';document.getElementById('et-next').textContent=(nx?('Próxima etapa: '+nx.nombre+' · '+nx.fecha):'Ciclo completado')+extra+(D.actualizado?(' · actualizado '+D.actualizado):'');}
+fetch('datos.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(render).catch(function(){render({etapas:DEF,etapa:'anuncio'});});})();
+</script>
 </body>
 </html>
