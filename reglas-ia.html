@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reglas de IA y datos · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;}
+.tabs a{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;}
+.tabs a:hover{background:var(--soft);}
+.tabs a.on{border-color:var(--navy);background:var(--navy);color:#fff;}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a{padding:7px 10px;font-size:14px}}
+
+.formula{font-family:'JetBrains Mono',monospace;font-size:15px;background:var(--navy);color:#fff;border-radius:12px;padding:14px 18px;margin:8px 0 14px;line-height:1.6;}
+.formula b{color:var(--verde);}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:10px 0 14px;}
+.caja{border:3px solid var(--navy);border-left-width:10px;border-radius:12px;padding:12px 14px;font-size:14px;box-shadow:6px 6px 0 var(--navy);}
+.caja b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.caja.m{border-left-color:var(--magenta);}.caja.f{border-left-color:var(--fucsia);}.caja.o{border-left-color:var(--naranja);}.caja.v{border-left-color:var(--verde);}
+.prompt{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--soft);border-left:5px solid var(--fucsia);border-radius:0 10px 10px 0;padding:12px 14px;margin:8px 0 10px;line-height:1.55;color:var(--ink);}
+.prompt .k{display:block;font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:6px;}
+.resumen{display:grid;gap:8px;margin:16px 0 8px;}
+.resumen div{display:flex;gap:12px;align-items:flex-start;background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;font-size:15px;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+.resumen .n{font-family:'JetBrains Mono',monospace;color:var(--verde);font-weight:700;flex:none;}
+.sem{border:3px solid;border-left-width:14px;border-radius:12px;padding:12px 16px 4px;margin:10px 0;font-size:15px;}
+.sem b{display:block;font-family:'Space Grotesk',sans-serif;font-size:17px;margin-bottom:6px;}
+.sem.v{border-color:var(--verde);background:#F6FBEA;}.sem.v b{color:#4F7300;}
+.sem.o{border-color:var(--naranja);background:#FFF6EF;}.sem.o b{color:#B34A00;}
+.sem.r{border-color:var(--fucsia);background:#FFF1F7;}.sem.r b{color:var(--magenta);}
+.sem ul{margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <a href="presentacion.html">Presentación</a>
+    <a href="guia-lideres.html">Guía para líderes</a>
+    <a href="ficha.html">Ficha de postulación</a>
+    <a href="kit.html">Kit del participante</a>
+    <a class="on" href="reglas-ia.html">Reglas de IA y datos</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+<aside>
+  <div class="k">Contenido</div>
+  <a href="#para-que">Para qué existen</a>
+  <a href="#semaforo">Semáforo de datos</a>
+  <a href="#herramientas">Herramientas permitidas</a>
+  <a href="#uso">Cómo usar la IA</a>
+  <a href="#revision">Qué revisa TI y cuándo</a>
+  <a href="#produccion">Nada va a producción solo</a>
+  <a href="#incidentes">Si algo sale mal</a>
+  <a href="#declaracion">Lo que firmas</a>
+  <a href="#pendientes">Pendientes por confirmar</a>
+</aside>
+
+<main>
+  <div class="eyebrow">// reglas de ia y datos · borrador para validación de ti</div>
+  <h1>Reglas de IA y datos</h1>
+  <p class="lead">Cinco reglas cortas para que cualquier colaborador pueda construir con inteligencia artificial sin poner en riesgo a un cliente, a un compañero ni a la empresa. Aplican a todos los participantes del programa desde que envían la ficha.</p>
+  <div class="aviso">Borrador. Estas reglas las valida el Director de TI antes de la convocatoria; lo marcado entre <span class="pend">[corchetes]</span> está pendiente. Hasta entonces, ante la duda: no cargues el dato y pregunta.</div>
+
+  <div class="resumen">
+    <div><span class="n">1</span>Datos ficticios o anonimizados para probar. Nunca datos personales de clientes o empleados.</div>
+    <div><span class="n">2</span>Solo la licencia que asigna el programa. Nada de cuentas personales con información de la empresa.</div>
+    <div><span class="n">3</span>La IA propone, tú verificas. Ninguna decisión sobre una persona la toma la herramienta sola.</div>
+    <div><span class="n">4</span>Nada se conecta a Odoo ni a ningún sistema en producción sin revisión de TI.</div>
+    <div><span class="n">5</span>Si cargaste algo que no debías, avisas a TI el mismo día. Avisar no se penaliza.</div>
+  </div>
+
+  <h2 id="para-que">Para qué existen</h2>
+  <p>El programa pone herramientas de IA en manos de gente que no trabaja en tecnología. Eso es lo que lo hace valioso y también lo que obliga a reglas simples: la empresa maneja datos de clientes, de empleados, de proveedores y financieros, y una herramienta externa de IA no es un lugar donde esos datos puedan estar. Las reglas protegen tres cosas, en este orden: a las personas cuyos datos manejamos, a la empresa y a ti como participante.</p>
+  <p>Marco de referencia: la Ley 172-13 de protección de datos personales de la República Dominicana y las políticas internas de seguridad de la información <span class="pend">[nombre y vigencia de la política, por confirmar con TI y Legal]</span>.</p>
+
+  <h2 id="semaforo">Semáforo de datos</h2>
+  <p>Antes de pegar cualquier cosa en una herramienta de IA, en un formulario o en una hoja compartida, ubícala en un color.</p>
+  <div class="sem v"><b>Verde · úsalo</b>
+    <ul>
+      <li>Datos ficticios que tú inventas para probar (nombres, pedidos, montos irreales).</li>
+      <li>Datos anonimizados: sin nombre, cédula, RNC, teléfono, correo, dirección ni número de cuenta, y sin combinaciones que permitan reconocer a alguien.</li>
+      <li>Información pública de la empresa: catálogo, precios publicados, horarios, políticas visibles al cliente.</li>
+      <li>Descripciones de cómo funciona tu proceso, sin casos reales.</li>
+    </ul></div>
+  <div class="sem o"><b>Amarillo · pregunta primero a TI</b>
+    <ul>
+      <li>Datos internos agregados: totales por mes, promedios por sucursal, cantidades de casos.</li>
+      <li>Reportes de Odoo exportados, aunque les hayas quitado los nombres.</li>
+      <li>Documentos internos: procedimientos, plantillas, correos de trabajo sin terceros.</li>
+      <li>Cualquier dato de proveedores o aliados.</li>
+    </ul></div>
+  <div class="sem r"><b>Rojo · nunca, en ninguna herramienta de IA</b>
+    <ul>
+      <li>Datos personales de clientes o empleados: nombre junto a cédula, teléfono, correo, dirección, historial de compras, salario, evaluaciones, salud.</li>
+      <li>Datos financieros: números de cuenta, tarjetas, estados financieros no publicados, márgenes por producto, condiciones de crédito.</li>
+      <li>Credenciales: usuarios, contraseñas, llaves de API, enlaces de acceso.</li>
+      <li>Información de proveedores o fabricantes cubierta por acuerdos de confidencialidad.</li>
+      <li>Cualquier dato tomado directamente de la base de datos de producción.</li>
+    </ul></div>
+  <p class="nota">Si un dato podría estar en dos colores, está en el más restrictivo.</p>
+
+  <h2 id="herramientas">Herramientas permitidas</h2>
+  <ul>
+    <li><b>La licencia del programa.</b> TI asigna una licencia de IA por participante o por equipo <span class="pend">[proveedor y plan por confirmar]</span>, con condiciones de uso de datos revisadas. Es la única herramienta de IA autorizada para el MVP.</li>
+    <li><b>Las herramientas de oficina que ya tiene la empresa</b> (correo, hojas de cálculo, formularios, documentos compartidos) <span class="pend">[lista exacta por confirmar con TI]</span>.</li>
+    <li><b>No:</b> cuentas personales o gratuitas de IA con información de la empresa, extensiones de navegador no aprobadas, software instalado por cuenta propia, ni servicios donde haya que crear una cuenta nueva con el correo corporativo sin avisar a TI.</li>
+  </ul>
+
+  <h2 id="uso">Cómo usar la IA</h2>
+  <ol>
+    <li><b>Verifica todo lo que sale.</b> Un texto, una regla, un cálculo o una clasificación producida por la IA se revisa antes de usarse. Si no lo puedes verificar, no lo uses.</li>
+    <li><b>Ninguna decisión automática sobre personas.</b> La herramienta puede sugerir; quien decide sobre un cliente, un empleado o un proveedor es una persona con nombre.</li>
+    <li><b>Declara el uso.</b> En la demo y en cualquier documento del MVP se dice qué parte hizo la IA y qué parte revisó una persona.</li>
+    <li><b>No guardes prompts con datos.</b> Si un prompt necesita un ejemplo, el ejemplo es ficticio. Los prompts se comparten en el kit sin datos reales.</li>
+    <li><b>Propiedad.</b> Lo que se construye en el programa pertenece a la empresa <span class="pend">[por confirmar con RRHH y Legal antes del anuncio]</span>; el reconocimiento público es de quien lo construyó.</li>
+  </ol>
+
+  <h2 id="revision">Qué revisa TI y cuándo</h2>
+  <table>
+    <tr><th>Momento</th><th>Qué revisa</th><th>Qué necesitas enviar</th></tr>
+    <tr><td>Antes de usar cualquier dato amarillo</td><td>Que el dato se puede usar, cómo anonimizarlo y dónde guardarlo.</td><td>Qué dato, de dónde sale, para qué lo necesitas.</td></tr>
+    <tr><td>Antes de conectar el MVP a cualquier sistema o cuenta de la empresa</td><td>Seguridad, accesos y que no toque producción.</td><td>Qué herramienta, qué conecta con qué, quién tendrá acceso.</td></tr>
+    <tr><td>Antes de que lo use alguien distinto de ti (semana 4)</td><td>Que los datos de la prueba cumplen el semáforo.</td><td>Un resumen de una página del MVP y de los datos que usa.</td></tr>
+    <tr><td>Antes de la demo</td><td>Que lo que se muestra no expone datos rojos.</td><td>El caso que vas a mostrar en vivo.</td></tr>
+  </table>
+  <p>Tiempo de respuesta de TI: <span class="pend">[por confirmar; propuesta: tres días hábiles]</span>. Planifica las consultas con ese margen; una revisión pendiente no es excusa para saltársela.</p>
+
+  <h2 id="produccion">Nada va a producción solo</h2>
+  <p>El MVP vive fuera del ERP y fuera de los sistemas en producción durante todo el ciclo. Se prueba con datos ficticios o anonimizados y con usuarios que saben que es una prueba. Solo el primer lugar, si es un MVP funcional, pasa a producción, y lo hace TI a partir del segundo trimestre de 2027, con un dueño operativo, un costo recurrente definido y horas aprobadas. Ningún participante conecta por su cuenta un MVP a Odoo, al correo corporativo masivo, a datos de clientes ni a ningún proceso del que dependan otros.</p>
+
+  <h2 id="incidentes">Si algo sale mal</h2>
+  <p>Cargaste un archivo con nombres reales, compartiste un enlace con alguien que no debía, dejaste una contraseña en un prompt. Pasa. Lo que importa es lo que haces después:</p>
+  <ol>
+    <li>Deja de usar la herramienta con ese dato.</li>
+    <li>Avisa a TI el mismo día <span class="pend">[canal por confirmar]</span>, diciendo qué dato, en qué herramienta y desde cuándo.</li>
+    <li>Sigue las instrucciones de TI para borrarlo o limitar el daño.</li>
+  </ol>
+  <p>Avisar no te saca del programa ni afecta tu evaluación. Ocultarlo, sí.</p>
+
+  <h2 id="declaracion">Lo que firmas</h2>
+  <p>Al enviar la ficha de postulación aceptas este texto, que aparece en el bloque de compromisos:</p>
+  <div class="senal">"Acepto las reglas de IA y datos del programa: pruebo con datos ficticios o anonimizados y no conecto nada a producción sin revisión de TI."</div>
+
+  <h2 id="pendientes">Pendientes por confirmar</h2>
+  <ul>
+    <li>Validación completa de estas reglas por el Director de TI.</li>
+    <li>Proveedor y plan de la licencia de IA, y sus condiciones de uso de datos.</li>
+    <li>Lista exacta de herramientas de oficina permitidas para construir el MVP.</li>
+    <li>Canal y tiempo de respuesta para consultas e incidentes.</li>
+    <li>Propiedad de lo construido y uso de las ideas: RRHH y Legal.</li>
+    <li>Nombre y vigencia de la política interna de seguridad de la información que sirve de base.</li>
+  </ul>
+</main>
+</div>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+</body>
+</html>
