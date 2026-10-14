@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de seguimiento · Programa de Innovación · CECOMSA</title>
+<link rel="icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002F6C;--ink:#1F2A3C;--muted:#5B6678;--line:#DCE1EA;--soft:#F4F6FA;
+  --magenta:#A20067;--fucsia:#E31C79;--verde:#84BD00;--naranja:#FF6900;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.55;}
+h1,h2,h3,h4{font-family:'Space Grotesk',Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--navy);}
+a{color:var(--magenta);}
+.band{height:8px;background:linear-gradient(90deg,#A20067 0 20%,#E31C79 20% 40%,#FF6900 40% 60%,#84BD00 60% 80%,#002F6C 80% 100%);}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);}
+.nav .in{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav img{height:40px;width:auto;}
+.nav .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--magenta);margin-right:auto;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.tabs a,.tabs .dd>button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;padding:8px 14px;border-radius:10px;border:2px solid transparent;background:none;cursor:pointer;line-height:1.2;}
+.tabs a:hover,.tabs .dd>button:hover{background:var(--soft);}
+.tabs a.on,.tabs .dd.on>button{border-color:var(--navy);background:var(--navy);color:#fff;}
+.dd{position:relative;}
+.dd>button::after{content:" ▾";font-size:11px;}
+.dd .menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px;min-width:230px;box-shadow:0 10px 28px rgba(0,47,108,.14);z-index:30;}
+.dd.open .menu{display:block;}
+@media(hover:hover){.dd:hover .menu{display:block;}}
+.dd .menu a{display:block;padding:8px 12px;border-radius:8px;border:none;font-size:14.5px;}
+.dd .menu a.on{background:var(--navy);color:#fff;}
+@media(max-width:640px){.nav .in{gap:12px}.tabs a,.tabs .dd>button{padding:7px 10px;font-size:14px}}
+.layout{max-width:1100px;margin:0 auto;padding:40px 24px 64px;display:grid;grid-template-columns:240px 1fr;gap:48px;}
+aside{position:sticky;top:84px;align-self:start;font-size:14px;}
+aside .k{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+aside a{display:block;color:var(--navy);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line);}
+aside a:hover{color:var(--magenta);}
+main{max-width:760px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;}
+h1{font-size:clamp(32px,4.6vw,48px);margin-bottom:14px;}
+h2{font-size:28px;margin:48px 0 12px;padding-top:8px;}
+h3{font-size:19px;margin:24px 0 8px;}
+p{margin-bottom:12px;}
+.lead{font-size:18px;}
+.aviso{border:3px solid var(--naranja);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#FFF6EF;font-size:14px;margin:18px 0 8px;}
+.pend{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--naranja);font-size:.92em;}
+ul,ol{margin:0 0 14px 22px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:15px;}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line);}
+th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+tr:nth-child(even) td{background:var(--soft);}
+.senal{border:3px solid var(--verde);border-left-width:12px;border-radius:12px;padding:12px 16px;background:#F6FBEA;font-size:15px;margin:14px 0;}
+.ciclo{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 10px;}
+.ciclo div{position:relative;background:var(--soft);border-radius:12px;padding:40px 14px 14px;font-size:14px;}
+.ciclo div::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:10px;left:14px;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--fucsia);font-size:13px;letter-spacing:.08em;}
+.ciclo b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+.check{list-style:none;margin-left:0;}
+.check li{padding-left:30px;position:relative;}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border:2px solid var(--navy);border-radius:5px;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);line-height:1.55;}
+footer{background:var(--soft);padding:28px 0;font-size:13px;color:var(--muted);}
+footer .in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+footer img{height:28px;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}aside{position:static}}
+
+.ruta{display:grid;grid-template-columns:auto 1fr;column-gap:22px;row-gap:12px;margin:14px 0;align-items:baseline;max-width:820px;}
+.ruta .d{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--magenta);white-space:nowrap;font-size:14px;}
+.ruta .t{font-size:15px;}
+details{border:2px solid var(--line);border-radius:12px;padding:0;margin:8px 0;background:#fff;}
+details summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;color:var(--navy);padding:12px 16px;list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"+";display:inline-block;width:18px;color:var(--fucsia);font-weight:700;}
+details[open] summary::before{content:"–";}
+details p{padding:0 16px 12px 34px;margin:0;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<nav class="nav"><div class="in">
+  <img src="logo.svg" alt="CECOMSA">
+  <span class="brand">Programa de Innovación</span>
+  <div class="tabs">
+    <a href="index.html">Inicio</a>
+    <div class="dd"><button type="button">El programa</button><div class="menu"><a href="bases.html">Bases del ciclo</a><a href="comite.html">Comité y criterios</a><a href="faq.html">Preguntas frecuentes</a><a href="presentacion.html">Presentación a Dirección</a></div></div>
+    <div class="dd"><button type="button">Participar</button><div class="menu"><a href="ficha.html">Ficha de postulación</a><a href="kit.html">Kit del participante</a><a href="reglas-ia.html">Reglas de IA y datos</a><a href="mentoria.html">Canal de mentoría</a></div></div>
+    <div class="dd on"><button type="button">Seguimiento</button><div class="menu"><a href="calendario.html">Calendario del ciclo</a><a class="on" href="panel.html">Panel de seguimiento</a><a href="finalistas.html">Finalistas y demo</a></div></div>
+    <a href="guia-lideres.html">Guía para líderes</a>
+  </div>
+</div></nav>
+
+<style>
+.pwrap{max-width:1100px;margin:0 auto;padding:32px 24px 64px;}
+.ptop{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+.ptop h1{font-size:clamp(30px,4.2vw,44px);margin-bottom:6px;}
+.ptop .meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);}
+.etapa{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--verde);padding:6px 12px;border-radius:9px;}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin:8px 0 22px;}
+.ptabs button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;background:none;border:none;border-bottom:4px solid transparent;padding:10px 14px;color:var(--navy);cursor:pointer;margin-bottom:-2px;}
+.ptabs button.on{border-bottom-color:var(--fucsia);}
+.pane{display:none;}.pane.on{display:block;}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px;}
+.tile{background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px 16px;}
+.tile .k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.tile .v{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--navy);line-height:1.1;margin-top:4px;}
+.tile .s{font-size:12.5px;color:var(--muted);margin-top:4px;}
+.tile.alert{border-color:var(--naranja);background:#FFF6EF;}
+.tile.hero .v{font-size:48px;}
+.fig{background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.fig h3{font-size:16px;margin:0 0 2px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.fig h3 button{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:3px 8px;cursor:pointer;color:var(--navy);}
+.fig .sub{font-size:12.5px;color:var(--muted);margin-bottom:10px;}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.bars{display:grid;gap:8px;}
+.bar{display:grid;grid-template-columns:minmax(150px,46%) 1fr auto;align-items:center;gap:10px;font-size:13.5px;}
+.bar .lbl{color:var(--ink);}
+.bar .trk{display:block;height:14px;background:var(--soft);border-radius:4px;overflow:hidden;}
+.bar .fil{display:block;height:100%;border-radius:0 4px 4px 0;background:var(--navy);min-width:2px;}
+.bar .val{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);min-width:2ch;text-align:right;}
+.empty{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);padding:14px 0;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;}
+.chip{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:#fff;}
+table.pt{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px;}
+table.pt th,table.pt td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+table.pt th{background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+.hidden{display:none;}
+.fin{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+.fcard{background:#fff;border:3px solid var(--navy);border-left-width:12px;border-radius:14px;padding:14px 16px;box-shadow:6px 6px 0 var(--navy);}
+.fcard h4{font-size:18px;margin-bottom:2px;}
+.fcard .k{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fucsia);}
+.fcard p{font-size:13.5px;margin:6px 0;}
+.wk{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:8px 0 4px;}
+.wk span{height:10px;border-radius:3px;background:var(--soft);}
+.wk span.done{background:var(--navy);}
+.wk span.now{background:var(--fucsia);}
+.kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0;}
+.kv div{background:var(--soft);border-radius:8px;padding:6px 8px;}
+.kv .k2{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);}
+.kv .v2{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--navy);font-size:16px;}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;border-radius:999px;padding:2px 10px 2px 6px;}
+.st i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+.st.verde{background:#EAF4E4;color:#2E6B1E;}.st.verde i{background:#3B8A3E;}
+.st.amarillo{background:#FFF3D6;color:#7A5200;}.st.amarillo i{background:#E0A100;}
+.st.rojo{background:#FDE7E7;color:#8A1C1C;}.st.rojo i{background:#C62828;}
+.svgline{width:100%;height:auto;display:block;}
+.svgline path{fill:none;stroke:var(--navy);stroke-width:2;}
+.svgline .area{fill:rgba(0,47,108,.08);stroke:none;}
+.svgline text{font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--muted);}
+.svgline circle{fill:#fff;stroke:var(--navy);stroke-width:2;}
+.nota{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:14px;}
+</style>
+
+<div class="pwrap">
+  <div class="ptop">
+    <div>
+      <div class="eyebrow">// panel de seguimiento · primer ciclo</div>
+      <h1>Panel de seguimiento</h1>
+      <div class="meta">Datos actualizados: <span id="p-act">—</span> · fuente: <code>datos.json</code> · solo cifras agregadas; el detalle por persona vive en SharePoint</div>
+    </div>
+    <div><span class="etapa" id="p-etapa">—</span></div>
+  </div>
+
+  <div class="ptabs" role="tablist">
+    <button class="on" data-t="conv">Convocatoria</button>
+    <button data-t="eval">Evaluación</button>
+    <button data-t="mvp">MVP</button>
+    <button data-t="res">Resultados</button>
+  </div>
+
+  <!-- CONVOCATORIA -->
+  <section class="pane on" id="pane-conv">
+    <div class="tiles">
+      <div class="tile hero"><div class="k">Propuestas recibidas</div><div class="v" id="c-total">0</div><div class="s" id="c-meta"></div></div>
+      <div class="tile"><div class="k">En equipo</div><div class="v" id="c-eq">0</div></div>
+      <div class="tile"><div class="k">Individuales</div><div class="v" id="c-ind">0</div></div>
+      <div class="tile"><div class="k">Confirmadas por el supervisor</div><div class="v" id="c-conf">0</div></div>
+      <div class="tile" id="c-pend-tile"><div class="k">Pendientes de confirmación</div><div class="v" id="c-pend">0</div><div class="s" id="c-pend-s"></div></div>
+    </div>
+    <div class="g2">
+      <div class="fig"><h3>Propuestas acumuladas por día <button data-tbl="c-dia">tabla</button></h3><div class="sub">20 nov – 10 dic 2026</div><div id="c-dia"></div></div>
+      <div class="fig"><h3>Por pilar <button data-tbl="c-pilar">tabla</button></h3><div class="sub">Cada propuesta se inscribe en un pilar</div><div id="c-pilar"></div></div>
+      <div class="fig"><h3>Por área <button data-tbl="c-area">tabla</button></h3><div class="sub">Área de quien propone (equipos: área del primer integrante)</div><div id="c-area"></div></div>
+      <div class="fig"><h3>Áreas que todavía no han postulado</h3><div class="sub">Para ir a tocar puertas antes del cierre</div><div id="c-sin" class="chips"></div></div>
+    </div>
+  </section>
+
+  <!-- EVALUACIÓN -->
+  <section class="pane" id="pane-eval">
+    <div class="tiles">
+      <div class="tile hero"><div class="k">Propuestas en evaluación</div><div class="v" id="e-total">0</div></div>
+      <div class="tile"><div class="k">Retroalimentación enviada</div><div class="v" id="e-env">0</div></div>
+      <div class="tile" id="e-pend-tile"><div class="k">Retroalimentación pendiente</div><div class="v" id="e-pend">0</div></div>
+    </div>
+    <div class="fig"><h3>Avance de puntuación por miembro del comité <button data-tbl="e-miembros">tabla</button></h3><div class="sub">Propuestas puntuadas sobre el total</div><div id="e-miembros"></div></div>
+    <p class="nota">Los puntajes por propuesta y la dispersión entre miembros no se publican aquí; están en la hoja del comité.</p>
+  </section>
+
+  <!-- MVP -->
+  <section class="pane" id="pane-mvp">
+    <div class="tiles" id="m-tiles"></div>
+    <div class="fin" id="m-cards"></div>
+    <p class="nota">Semáforo: <span class="st verde"><i></i>avanza</span> <span class="st amarillo"><i></i>bloqueado (datos, accesos, otra área)</span> <span class="st rojo"><i></i>sin avance dos semanas</span>. Lo actualiza el mentor tras cada contacto.</p>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="pane" id="pane-res">
+    <div class="fig"><h3>Antes y después por finalista</h3><div class="sub">Una cifra por proyecto, medida contra la línea base</div><div id="r-tabla"></div></div>
+    <div class="fig"><h3>Seguimiento a 30, 60 y 90 días</h3><div class="sub">Finanzas valida lo económico; el comité y Dirección lo cualitativo</div><div id="r-seg"></div></div>
+    <div class="fig"><h3>Indicadores del programa</h3><div class="sub">Lo que se lleva a Dirección para decidir el segundo ciclo</div>
+      <div class="tiles" style="margin-bottom:0">
+        <div class="tile"><div class="k">Propuestas</div><div class="v" id="r-prop">0</div></div>
+        <div class="tile"><div class="k">Áreas participantes</div><div class="v" id="r-areas">0</div></div>
+        <div class="tile"><div class="k">Finalistas</div><div class="v" id="r-fin">0</div></div>
+        <div class="tile"><div class="k">MVP en uso</div><div class="v" id="r-uso">0</div></div>
+        <div class="tile"><div class="k">Al banco de ideas</div><div class="v" id="r-banco">0</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+var DEFAULT_DATA = {"actualizado":"2026-10-14","etapa":"anuncio","etapas":[{"id":"anuncio","nombre":"Anuncio","fecha":"5 nov 2026"},{"id":"convocatoria","nombre":"Convocatoria","fecha":"20 nov – 10 dic"},{"id":"evaluacion","nombre":"Evaluación","fecha":"11 – 22 dic"},{"id":"seleccion","nombre":"Selección","fecha":"1.ª sem ene 2027"},{"id":"mvp","nombre":"MVP","fecha":"15 ene – 15 mar"},{"id":"demo","nombre":"Demo","fecha":"[tras el 15 mar]"},{"id":"implementacion","nombre":"Implementación","fecha":"desde Q2 2027"}],"convocatoria":{"meta":null,"porDia":[],"porPilar":{"Experiencia del cliente":0,"Mejora de procesos":0,"Eficiencia":0,"Retorno":0},"porArea":{},"equipo":0,"individual":0,"confirmadas":0,"pendientes":0,"pendientesMas5dias":0,"areasSinPostular":[]},"evaluacion":{"total":0,"puntuadasPorMiembro":{},"retroEnviada":0,"retroPendiente":0},"finalistas":[],"resultados":{"programa":{"propuestas":0,"areasParticipantes":0,"finalistas":0,"mvpEnUso":0,"alBanco":0}}};
+var PILAR_COLOR = {"Experiencia del cliente":"#E31C79","Mejora de procesos":"#84BD00","Eficiencia":"#1F4E9C","Retorno":"#FF6900"};
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function bars(el, obj, colorFn){
+  var keys=Object.keys(obj); var max=Math.max.apply(null,keys.map(function(k){return obj[k];}).concat([1]));
+  if(!keys.length || !keys.some(function(k){return obj[k]>0;})){ el.innerHTML='<div class="empty">Sin datos todavía.</div>'; el.dataset.rows=JSON.stringify(keys.map(function(k){return [k,obj[k]];})); return; }
+  keys.sort(function(a,b){return obj[b]-obj[a];});
+  el.innerHTML='<div class="bars">'+keys.map(function(k){var w=Math.round(obj[k]/max*100); var c=colorFn?colorFn(k):'var(--navy)'; return '<div class="bar"><span class="lbl" title="'+esc(k)+'">'+esc(k)+'</span><span class="trk"><span class="fil" style="width:'+w+'%;background:'+c+'"></span></span><span class="val">'+obj[k]+'</span></div>';}).join('')+'</div>';
+  el.dataset.rows=JSON.stringify(keys.map(function(k){return [k,obj[k]];}));
+}
+function line(el, rows){
+  if(!rows.length){ el.innerHTML='<div class="empty">La convocatoria abre el 20 de noviembre.</div>'; el.dataset.rows='[]'; return; }
+  var acc=0, pts=rows.map(function(r){acc+=r.n; return {d:r.fecha,y:acc};});
+  var W=520,H=160,L=36,R=12,T=14,B=28; var max=Math.max(acc,1);
+  var x=function(i){return L+(W-L-R)*(pts.length>1? i/(pts.length-1):0.5);}, y=function(v){return T+(H-T-B)*(1-v/max);};
+  var d=pts.map(function(p,i){return (i?'L':'M')+x(i).toFixed(1)+','+y(p.y).toFixed(1);}).join(' ');
+  var area=d+' L'+x(pts.length-1).toFixed(1)+','+y(0)+' L'+x(0).toFixed(1)+','+y(0)+' Z';
+  var last=pts[pts.length-1];
+  el.innerHTML='<svg class="svgline" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet"><path class="area" d="'+area+'"/><path d="'+d+'"/><circle cx="'+x(pts.length-1)+'" cy="'+y(last.y)+'" r="4"/><text x="'+(x(pts.length-1)-6)+'" y="'+(y(last.y)-8)+'" text-anchor="end">'+last.y+'</text><text x="'+L+'" y="'+(H-8)+'">'+esc(pts[0].d)+'</text><text x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end">'+esc(last.d)+'</text><text x="'+(L-4)+'" y="'+(T+8)+'" text-anchor="end">'+max+'</text><text x="'+(L-4)+'" y="'+y(0)+'" text-anchor="end">0</text></svg>';
+  el.dataset.rows=JSON.stringify(pts.map(function(p){return [p.d,p.y];}));
+}
+function toggleTable(btn){
+  var el=$(btn.dataset.tbl); var t=el.nextElementSibling;
+  if(t && t.classList.contains('pt')){ t.remove(); btn.textContent='tabla'; return; }
+  var rows=JSON.parse(el.dataset.rows||'[]'); var tb=document.createElement('table'); tb.className='pt';
+  tb.innerHTML='<tr><th>Categoría</th><th>Valor</th></tr>'+(rows.length?rows.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';}).join(''):'<tr><td colspan="2">Sin datos</td></tr>');
+  el.after(tb); btn.textContent='ocultar';
+}
+function st(r){ var m={verde:'avanza',amarillo:'bloqueado',rojo:'sin avance'}; return '<span class="st '+r+'"><i></i>'+(m[r]||r)+'</span>'; }
+function render(D){
+  $('p-act').textContent=D.actualizado||'—';
+  var et=(D.etapas||[]).filter(function(e){return e.id===D.etapa;})[0]; $('p-etapa').textContent=et? (et.nombre+' · '+et.fecha) : (D.etapa||'—');
+  var C=D.convocatoria||{}; var total=C.porDia&&C.porDia.length? C.porDia.reduce(function(a,r){return a+r.n;},0) : (C.confirmadas||0)+(C.pendientes||0);
+  $('c-total').textContent=total; $('c-meta').textContent=C.meta? ('meta: '+C.meta+' · '+Math.round(total/C.meta*100)+'%') : 'sin meta definida';
+  $('c-eq').textContent=C.equipo||0; $('c-ind').textContent=C.individual||0; $('c-conf').textContent=C.confirmadas||0; $('c-pend').textContent=C.pendientes||0;
+  if(C.pendientesMas5dias>0){ $('c-pend-tile').classList.add('alert'); $('c-pend-s').textContent='⚠ '+C.pendientesMas5dias+' con más de 5 días'; } else { $('c-pend-tile').classList.remove('alert'); $('c-pend-s').textContent=''; }
+  line($('c-dia'), C.porDia||[]); bars($('c-pilar'), C.porPilar||{}, function(k){return PILAR_COLOR[k]||'var(--navy)';}); bars($('c-area'), C.porArea||{});
+  var sin=C.areasSinPostular||[]; $('c-sin').innerHTML= sin.length? sin.map(function(a){return '<span class="chip">'+esc(a)+'</span>';}).join('') : '<div class="empty">'+(total? 'Todas las áreas han postulado.':'Se llena cuando abra la convocatoria.')+'</div>';
+  var E=D.evaluacion||{}; $('e-total').textContent=E.total||0; $('e-env').textContent=E.retroEnviada||0; $('e-pend').textContent=E.retroPendiente||0;
+  $('e-pend-tile').classList.toggle('alert', (E.retroPendiente||0)>0 && D.etapa!=='evaluacion' && D.etapa!=='convocatoria');
+  var pm=E.puntuadasPorMiembro||{}; var pmTot={}; Object.keys(pm).forEach(function(k){pmTot[k]=pm[k];}); bars($('e-miembros'), pmTot);
+  var F=D.finalistas||[]; var cnt={verde:0,amarillo:0,rojo:0}; F.forEach(function(f){ if(cnt[f.riesgo]!=null) cnt[f.riesgo]++; });
+  var conDespues=F.filter(function(f){return f.actual!=null;}).length;
+  $('m-tiles').innerHTML='<div class="tile hero"><div class="k">Finalistas</div><div class="v">'+F.length+'</div></div><div class="tile"><div class="k">Avanzan</div><div class="v">'+cnt.verde+'</div></div><div class="tile'+(cnt.amarillo?' alert':'')+'"><div class="k">Bloqueados</div><div class="v">'+cnt.amarillo+'</div></div><div class="tile'+(cnt.rojo?' alert':'')+'"><div class="k">Sin avance</div><div class="v">'+cnt.rojo+'</div></div><div class="tile"><div class="k">Con datos de "después"</div><div class="v">'+conDespues+'</div></div>';
+  $('m-cards').innerHTML= F.length? F.map(function(f){
+    var wk=''; for(var i=1;i<=8;i++){ wk+='<span class="'+(i<f.semana?'done':(i===f.semana?'now':''))+'"></span>'; }
+    var rv=function(v){return v==='hecha'?'✓ hecha':(v==='bloqueo'?'⚠ con bloqueo':'pendiente');};
+    return '<div class="fcard" style="border-left-color:'+(PILAR_COLOR[f.pilar]||'var(--navy)')+'"><div class="k">'+esc(f.id)+' · '+esc(f.pilar)+' · '+esc((f.areas||[]).join(', '))+'</div><h4>'+esc(f.equipo)+'</h4><p>'+esc(f.problema)+'</p><div class="wk">'+wk+'</div><div class="nota" style="margin:0">semana '+(f.semana||0)+' de 8 · '+st(f.riesgo||'verde')+'</div><div class="kv"><div><div class="k2">línea base</div><div class="v2">'+esc(f.lineaBase==null?'—':f.lineaBase)+'</div></div><div><div class="k2">meta</div><div class="v2">'+esc(f.meta==null?'—':f.meta)+'</div></div><div><div class="k2">actual</div><div class="v2">'+esc(f.actual==null?'—':f.actual)+'</div></div></div><p><b>Indicador:</b> '+esc(f.indicador)+'</p><p><b>Revisión 3:</b> '+rv((f.revisiones||{}).r3)+' · <b>Revisión 6:</b> '+rv((f.revisiones||{}).r6)+'</p><p><b>Mentoría:</b> '+(f.mentoriaHoras||0)+' h · sesiones extra: '+(f.sesionesExtra||0)+'</p></div>';
+  }).join('') : '<div class="empty">Los finalistas se anuncian en la primera semana de enero de 2027.</div>';
+  var R=D.resultados||{}; var P=R.programa||{};
+  $('r-prop').textContent=P.propuestas||0; $('r-areas').textContent=P.areasParticipantes||0; $('r-fin').textContent=P.finalistas||0; $('r-uso').textContent=P.mvpEnUso||0; $('r-banco').textContent=P.alBanco||0;
+  var conRes=F.filter(function(f){return f.resultado && f.resultado.despues!=null;});
+  $('r-tabla').innerHTML= conRes.length? '<table class="pt"><tr><th>Equipo</th><th>Indicador</th><th>Antes</th><th>Después</th><th>Lugar</th><th>Comité</th><th>Público</th></tr>'+conRes.map(function(f){return '<tr><td>'+esc(f.equipo)+'</td><td>'+esc(f.indicador)+'</td><td>'+esc(f.lineaBase)+'</td><td>'+esc(f.resultado.despues)+'</td><td>'+esc(f.resultado.lugar==null?'—':f.resultado.lugar)+'</td><td>'+esc(f.resultado.votoComite==null?'—':f.resultado.votoComite)+'</td><td>'+esc(f.resultado.votoPublico==null?'—':f.resultado.votoPublico)+'</td></tr>';}).join('')+'</table>' : '<div class="empty">Se llena después de la demo.</div>';
+  var conSeg=F.filter(function(f){return f.seguimiento && (f.seguimiento.d30!=null||f.seguimiento.d60!=null||f.seguimiento.d90!=null);});
+  $('r-seg').innerHTML= conSeg.length? '<table class="pt"><tr><th>Equipo</th><th>30 días</th><th>60 días</th><th>90 días</th><th>Validado por</th><th>Implementación</th></tr>'+conSeg.map(function(f){var s=f.seguimiento; return '<tr><td>'+esc(f.equipo)+'</td><td>'+esc(s.d30==null?'—':s.d30)+'</td><td>'+esc(s.d60==null?'—':s.d60)+'</td><td>'+esc(s.d90==null?'—':s.d90)+'</td><td>'+esc(s.validadoPor)+'</td><td>'+esc(f.implementacion)+'</td></tr>';}).join('')+'</table>' : '<div class="empty">Se mide desde que un MVP entra en uso real.</div>';
+  var tabByStage={anuncio:'conv',convocatoria:'conv',evaluacion:'eval',seleccion:'eval',mvp:'mvp',demo:'res',implementacion:'res'};
+  if(!location.hash) showTab(tabByStage[D.etapa]||'conv');
+}
+function showTab(t){ document.querySelectorAll('.ptabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===t);}); document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('on',p.id==='pane-'+t);}); }
+document.querySelectorAll('.ptabs button').forEach(function(b){ b.addEventListener('click',function(){ showTab(b.dataset.t); history.replaceState(null,'','#'+b.dataset.t); }); });
+document.querySelectorAll('button[data-tbl]').forEach(function(b){ b.addEventListener('click',function(){ toggleTable(b); }); });
+if(location.hash) showTab(location.hash.slice(1));
+window.addEventListener('hashchange',function(){ if(location.hash) showTab(location.hash.slice(1)); });
+fetch('datos.json',{cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(render).catch(function(){ render(DEFAULT_DATA); });
+</script>
+
+<footer><div class="in"><img src="logo.svg" alt="CECOMSA"><span>Programa de Innovación · Gerencia de Proyectos de Innovación · CECOMSA · borrador, octubre 2026</span></div></footer>
+<script>
+(function(){var dds=document.querySelectorAll('.dd');dds.forEach(function(d){d.querySelector('button').addEventListener('click',function(e){e.stopPropagation();dds.forEach(function(o){if(o!==d)o.classList.remove('open');});d.classList.toggle('open');});});document.addEventListener('click',function(){dds.forEach(function(o){o.classList.remove('open');});});})();
+</script>
+</body>
+</html>
