@@ -84,6 +84,13 @@ footer img{height:28px;}
 .sem.o{border-color:var(--naranja);background:#FFF6EF;}.sem.o b{color:#B34A00;}
 .sem.r{border-color:var(--fucsia);background:#FFF1F7;}.sem.r b{color:var(--magenta);}
 .sem ul{margin-bottom:8px;}
+.chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;}
+.chip.v{background:#F6FBEA;color:#4F7300;border:1.5px solid var(--verde);}.chip.o{background:#FFF6EF;color:#B34A00;border:1.5px solid var(--naranja);}.chip.r{background:#FFF1F7;color:var(--magenta);border:1.5px solid var(--fucsia);}
+.politica{border-top:3px solid var(--navy);margin-top:40px;padding-top:6px;}
+.politica h3{font-size:20px;margin:28px 0 8px;}
+.contactos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0 14px;}
+.contactos div{background:var(--soft);border-radius:12px;padding:12px 14px;font-size:14px;}
+.contactos b{display:block;font-family:'Space Grotesk',sans-serif;color:var(--navy);font-size:15px;margin-bottom:2px;}
 </style>
 </head>
 <body>
@@ -105,6 +112,7 @@ footer img{height:28px;}
   <div class="k">Contenido</div>
   <a href="#para-que">Para qué existen</a>
   <a href="#semaforo">Semáforo de datos</a>
+  <a href="#politica">Política de uso de IA en CECOMSA</a>
   <a href="#herramientas">Herramientas permitidas</a>
   <a href="#uso">Cómo usar la IA</a>
   <a href="#revision">Qué revisa TI y cuándo</a>
@@ -156,6 +164,60 @@ footer img{height:28px;}
       <li>Cualquier dato tomado directamente de la base de datos de producción.</li>
     </ul></div>
   <p class="nota">Si un dato podría estar en dos colores, está en el más restrictivo.</p>
+
+  <section class="politica" id="politica">
+  <div class="eyebrow">// guía · resumen de la política vigente</div>
+  <h2 style="margin-top:6px">Uso de IA en CECOMSA</h2>
+  <p class="lead">Lo que dice la política de la empresa y cómo se aplica en el programa.</p>
+  <div class="aviso">Esto es un resumen. La fuente es la <b>Política de Uso de la Marca CECOMSA en Herramientas de IA</b>, emitida por Gestión Humana en junio de 2026. Ante cualquier diferencia, manda el documento oficial. <span class="pend">[Confirmar con Gestión Humana que es la versión vigente y dónde se publica.]</span></div>
+  <p>Aplica a todo el personal, contratistas y representantes que usen IA para crear materiales, y a herramientas como ChatGPT, Microsoft Copilot, Google Gemini, Canva AI y similares.</p>
+
+  <h3>¿Puede usarse en IA externa?</h3>
+  <table>
+    <tr><th>Tipo de información</th><th>Política</th><th>Semáforo del programa</th></tr>
+    <tr><td>Materiales de comunicación general</td><td>Sí, con precaución de marca</td><td><span class="chip v">verde</span></td></tr>
+    <tr><td>Presentaciones internas sin datos sensibles</td><td>Sí</td><td><span class="chip o">amarillo</span></td></tr>
+    <tr><td>Datos de clientes o proveedores</td><td>No sin autorización de TI</td><td><span class="chip r">rojo</span> clientes · <span class="chip o">amarillo</span> proveedores</td></tr>
+    <tr><td>Contratos o acuerdos comerciales</td><td>No sin autorización de TI</td><td><span class="chip r">rojo</span></td></tr>
+    <tr><td>Información financiera</td><td>No sin autorización de TI</td><td><span class="chip r">rojo</span> no publicada · <span class="chip o">amarillo</span> agregada</td></tr>
+    <tr><td>Estrategias o planes de negocio</td><td>No sin autorización de TI</td><td><span class="chip o">amarillo</span></td></tr>
+    <tr><td>Datos personales de colaboradores</td><td>No</td><td><span class="chip r">rojo</span></td></tr>
+  </table>
+  <p class="nota">El <a href="#semaforo">semáforo del programa</a> es más estricto que la política: lo que la política permite con autorización de TI, en el MVP se prueba solo con datos ficticios o anonimizados. Si un dato cae en dos colores, manda el más restrictivo.</p>
+
+  <h3>Lo que no está permitido</h3>
+  <div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+    <div class="caja m"><b>Generar el logo con IA</b>La IA no genera, recrea ni imita el logo, el isotipo ni ningún elemento de identidad. Aunque se vea correcto, no es oficial.</div>
+    <div class="caja f"><b>Distorsionar la marca</b>No se altera, deforma, recolorea, rota, estira ni comprime el logo.</div>
+    <div class="caja o"><b>Logo en documentos confidenciales</b>No sin revisión y aprobación previa del área responsable.</div>
+    <div class="caja v"><b>Confidencial en IA externa</b>Contratos, estados financieros, datos de clientes y de colaboradores, estrategias: no se suben sin autorización previa de TI.</div>
+  </div>
+
+  <h3>Si necesitas el logo en un arte hecho con IA</h3>
+  <div class="ciclo">
+    <div><b>Diseña sin logo</b>Crea el arte en la herramienta sin pedir el logo.</div>
+    <div><b>Descarga</b>PNG en alta resolución o PDF.</div>
+    <div><b>Abre en un editor</b>Word, PowerPoint o Canva sin IA.</div>
+    <div><b>Inserta el logo oficial</b>Desde los archivos autorizados; mínimo 19 mm de alto y con su área libre.</div>
+    <div><b>Si dudas, consulta</b>A Marketing o a tu supervisor antes de publicar.</div>
+  </div>
+
+  <h3>Niveles de incumplimiento</h3>
+  <table>
+    <tr><th>Nivel</th><th>Ejemplo</th><th>Consecuencia</th></tr>
+    <tr><td>Leve</td><td>Uso incorrecto del logo por desconocimiento, sin distribución</td><td>Orientación y capacitación</td></tr>
+    <tr><td>Grave</td><td>Distribuir material con logo distorsionado o no autorizado</td><td>Amonestación escrita</td></tr>
+    <tr><td>Muy grave</td><td>Filtrar información confidencial a una IA externa</td><td>Medidas disciplinarias</td></tr>
+  </table>
+
+  <h3>A quién consultar</h3>
+  <div class="contactos">
+    <div><b>Marca y materiales</b>Marketing / Diseño</div>
+    <div><b>Herramientas autorizadas y seguridad</b>Tecnología de Información (TI)</div>
+    <div><b>Incumplimientos y política</b>Gestión Humana</div>
+    <div><b>Primera consulta</b>Tu supervisor directo</div>
+  </div>
+  </section>
 
   <h2 id="herramientas">Herramientas permitidas</h2>
   <ul>
