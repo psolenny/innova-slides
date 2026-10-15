@@ -134,6 +134,17 @@ ol.big li strong{color:var(--fucsia);}
 .dark .nota,.blue .nota,.pop .nota{color:rgba(255,255,255,.7);}
 
 /* tabla de partidas */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:2.4vw;}
+.opt{border:2px solid rgba(255,255,255,.25);border-radius:14px;padding:1.6vh 1.4vw 1vh;}
+.opt.b{border-color:var(--verde);}
+.oh{display:flex;align-items:baseline;gap:.8vw;margin-bottom:.6vh;}
+.oh .ok{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(11px,1.1vw,15px);text-transform:uppercase;letter-spacing:.08em;color:var(--verde);}
+.oh b{font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.5vw,21px);color:#fff;}
+.tbl.s{margin-top:.4vh;font-size:clamp(11.5px,1.15vw,16px);}
+.tbl.s td{padding:.6vh .5vw;}
+.tbl.s tr.tot td{font-size:clamp(12.5px,1.3vw,18px);}
+.od{font-size:clamp(11px,1.05vw,14.5px);color:rgba(255,255,255,.75);margin-top:.8vh;line-height:1.4;}
+@media(max-width:820px){.opts{grid-template-columns:1fr;}}
 .tbl{margin-top:1.5vh;width:100%;border-collapse:collapse;font-size:clamp(14px,1.6vw,24px);}
 .tbl td{padding:.9vh 1vw;border-bottom:1px solid rgba(255,255,255,.18);}
 .tbl td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--verde);white-space:nowrap;}
@@ -306,15 +317,33 @@ ol.big li strong{color:var(--fucsia);}
 <section class="slide dark" data-t="09 · inversión">
   <div class="logo" role="img" aria-label="CECOMSA"></div>
   <div class="eyebrow">// qué cuesta habilitar el primer ciclo</div>
-  <h2>Un techo pequeño,<br>por cotizar.</h2>
-  <table class="tbl">
-    <tr><td>Licencias de IA · 5 a 10 usuarios según equipos · US$25 por licencia<span class="det">proveedor y plan por confirmar</span></td><td>US$125 – 250</td></tr>
-    <tr><td>Bolsa de premios · 1.º, 2.º y 3.º<span class="det">distribución por lugar por definir</span></td><td>US$2,000</td></tr>
-    <tr><td>Convocatoria y demo</td><td>US$100</td></tr>
-    <tr><td>Contingencia</td><td>US$500</td></tr>
-    <tr class="tot"><td>Techo de desembolso estimado</td><td>≈ US$2,725 – 2,850</td></tr>
-  </table>
-  <p class="nota">Estimaciones para discusión, no cotizaciones.</p>
+  <h2 style="font-size:clamp(26px,3.9vw,52px);margin-bottom:2vh">Dos opciones de reconocimiento.<br>El resto del costo es igual.</h2>
+  <div class="opts">
+    <div class="opt">
+      <div class="oh"><span class="ok">opción a</span><b>Bolsa única</b></div>
+      <table class="tbl s">
+        <tr><td>Licencias de IA · 5 a 10 usuarios · US$25 c/u<span class="det">proveedor y plan por confirmar</span></td><td>US$125 – 250</td></tr>
+        <tr><td>Bolsa de premios · 1.º, 2.º y 3.º<span class="det">reparto por lugar por definir</span></td><td>US$2,000</td></tr>
+        <tr><td>Convocatoria y demo</td><td>US$100</td></tr>
+        <tr><td>Contingencia</td><td>US$500</td></tr>
+        <tr class="tot"><td>Techo estimado</td><td>≈ US$2,725 – 2,850</td></tr>
+      </table>
+      <p class="od">Reconocimiento público a finalistas. Sin premio material para finalistas fuera del podio ni para participantes.</p>
+    </div>
+    <div class="opt b">
+      <div class="oh"><span class="ok">opción b</span><b>Premios por lugar + reconocimiento a todos</b></div>
+      <table class="tbl s">
+        <tr><td>Licencias de IA · 5 a 10 usuarios · US$25 c/u</td><td>US$125 – 250</td></tr>
+        <tr><td>Efectivo por equipo · 1.º US$2,000 · 2.º US$1,000 · 3.º US$500<span class="det">en partes iguales entre integrantes, vía nómina <span class="pend">[confirmar con Finanzas y RRHH]</span></span></td><td>US$3,500</td></tr>
+        <tr><td>Finalistas: dispositivo del catálogo por integrante y cena de cierre<span class="det">categoría y modelo por definir con Comercial</span></td><td><span class="pend">[por cotizar]</span></td></tr>
+        <tr><td>Todos los participantes: pin y gadget</td><td><span class="pend">[por cotizar]</span></td></tr>
+        <tr><td>Convocatoria y demo · contingencia</td><td>US$600</td></tr>
+        <tr class="tot"><td>Techo estimado</td><td>≈ US$4,225 – 4,350<span class="det">+ especie por cotizar</span></td></tr>
+      </table>
+      <p class="od">El 1.º lugar se presenta ante Dirección General; reconocimiento en canales internos y redes <span class="pend">[con consentimiento]</span>.</p>
+    </div>
+  </div>
+  <p class="nota" style="margin-top:2vh">Estimaciones para discusión, no cotizaciones. En las dos opciones el 1.º lugar se implementa con acompañamiento de TI y el 2.º y 3.º tienen prioridad para implementar.</p>
 </section>
 
 <!-- 11 · cómo se mide -->
