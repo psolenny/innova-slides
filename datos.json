@@ -13,7 +13,7 @@
   "convocatoria": {
     "meta": null,
     "porDia": [],
-    "porPilar": {"Experiencia del cliente": 0, "Mejora de procesos": 0, "Eficiencia": 0, "Retorno": 0},
+    "porPilar": {"Experiencia del cliente": 0, "Procesos y eficiencia": 0, "Retorno": 0},
     "porArea": {},
     "equipo": 0,
     "individual": 0,
@@ -37,7 +37,7 @@
     "id": "F1",
     "equipo": "Nombre del equipo",
     "areas": ["Área"],
-    "pilar": "Mejora de procesos",
+    "pilar": "Procesos y eficiencia",
     "problema": "El problema en una frase.",
     "indicador": "minutos por caso",
     "lineaBase": null,
